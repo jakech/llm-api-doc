@@ -1,11 +1,5 @@
 ---
-title: API Reference
-
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+title: Lalamove API Reference
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,221 +13,173 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+The lalamove API lets you integrate your application and business with express delivery, including following end points for our client to use.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+**APIPurpose**1QuotationAllow the user to get quotation of an order, delivery with multiple stops and schedule order of a specific time2Place orderAllow the user to place an order with a defined value from our quotation API3Get order detailsAllow the user to retrieve the order information4Get order's driver informationAllow the user to retrieve the driver information of an order5Get order's driver locationAllow the user to retrieve the driver latest location6Cancel orderAllow the user to cancel the order before the driver is matched and less than 3 mins after driver is matched. (cannot cancel after driver has arrived first stop)
 
 # Authentication
 
-> To authorize, use this code:
+Lalamove API makes use of [HMAC](https://en.wikipedia.org/wiki/Hash-based_message_authentication_code) (SHA256) as the authentication mechanism.
 
-```ruby
-require 'kittn'
+Customers will be provided with a api key(a fixed unique identifier given by lalamove representing the customer identity), and a secret for generating [HMAC](https://en.wikipedia.org/wiki/Hash-based_message_authentication_code) hash (also known as a signature).
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Every call **MUST** include this header.
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: hmac <KEY>:<TIMESTAMP>:<SIGNATURE>`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>&lt;KEY&gt;</code>, <code>&lt;TIMESTAMP&gt;</code> and <code>&lt;SIGNATURE&gt;</code> with the following...
 </aside>
 
-# Kittens
+|               |        |
+| ------------- | ------ |
+| `<KEY>`       | lalala |
+| `<TIMESTAMP>` | lalala |
+| `<SIGNATURE>` | lalala |
 
-## Get All Kittens
+# Get a quotation
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```
+POST https://rest.lalamove.com/v2/quotations
 ```
 
-```python
-import kittn
+> Headers
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+```
+Authorization: hmac <TOKEN>
+Content-Type: application/json
+X-LLM-Country: <YOUR_COUNTRY>
+X-Request-ID: <UUID>
 ```
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> Body
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+{
+  "scheduleAt": "2018-12-19T14:30:00.00Z",
+  "serviceType": "VAN",
+  "stops": [...],
+  "deliveries": [...],
+  "requesterContact": { "name": "Peter Pan", "phone": "81700091" },
+  "specialRequests": ["COD", "HELP_BUY", "LALABAG"],
+  "promoCode": "BLAH"
+}
+```
+
+> Responses: `200`
+
+```json
+{
+  "totalFee": "67",
+  "totalFeeCurrency": "SGD"
+}
+```
+
+Request a quotation.
+
+Will return a with an object containing the fee amount and currency of based on information provided.
+
+`POST` `/v2/quotations`
+
+**Body**
+
+✅ - _Required_
+
+|                    |     |                  |                                                                                                                                  |
+| ------------------ | --- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `scheduleAt`       | ✅  | `string`         | Pick up time in **UTC** time zone. In **ISO RFC3339** format                                                                     |
+| `serviceType`      | ✅  | `string`         | `MOTORCYCLE`- **50 × 50 × 50 cm** or less <br>`MPV` - **115 × 115 × 80 cm** or less <br> `TRUCK`- **170 × 150 × 170 cm** or less |
+| `stops`            | ✅  | `Waypoint[]`     | Array of [`Waypoint`](#waypoint) (minimum 2, maximum 10)                                                                         |
+| `deliveries`       | ✅  | `DeliveryInfo[]` | Array of [`DeliveryInfo`](#deliveryinfo) like contact person, mobile phone number and remarks for each item                      |
+| `requesterContact` | ✅  | `Contact`        | Person of contact at _pick up point_ aka `stop[0]`, see [`Contact`](#contact)                                                    |  |
+| `specialRequests`  |     | `string[]`       | blah blah blah                                                                                                                   |
+| `promoCode`        |     | `string`         | blah blah blah                                                                                                                   |
+
+## Waypoint
+
+> **Waypoint**
+> talk about **Waypoint**
+
+```json
+{
+  "location": { "lat": "13.740167", "lng": "100.535237" },
+  "addresses": {
+    "th_TH": {
+      "displayString": "Siam Pathum Wan, Bangkok",
+      "country": "TH"
+    }
   }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
 }
 ```
 
-This endpoint retrieves a specific kitten.
+hahblah blah
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+## DeliveryInfo
 
-### HTTP Request
+> **DeliveryInfo**
 
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> hahahaha **DeliveryInfo**
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "toStop": 1,
+  "toContact": <Contact>
 }
 ```
 
-This endpoint deletes a specific kitten.
+hahblah blah
 
-### HTTP Request
+## Contact
 
-`DELETE http://example.com/kittens/<ID>`
+> **Contact**
 
-### URL Parameters
+> hahahaha **Contact**
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+```json
+{ "name": "mm", "phone": "9999999" }
+```
+
+hahblah blah
+
+# Place an order
+
+```
+POST https://rest.lalamove.com/v2/orders
+```
+
+> Headers
+
+```
+Authorization: hmac <TOKEN>
+Content-Type: application/json
+X-LLM-Country: <YOUR_COUNTRY>
+X-Request-ID: <UUID>
+```
+
+> Body
+
+```json
+{
+  "scheduleAt": "2018-12-19T14:30:00.00Z",
+  "serviceType": "VAN",
+  "stops": [...],
+  "deliveries": [...],
+  "requesterContact": { "name": "Peter Pan", "phone": "81700091" },
+  "specialRequests": ["COD", "HELP_BUY", "LALABAG"],
+  "promoCode": "BLAH"
+}
+```
+
+> Responses: `200`
+
+```json
+{
+  "totalFee": "67",
+  "totalFeeCurrency": "SGD"
+}
+```
+
+`POST` `/v2/orders`
+
+
 
