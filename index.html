@@ -242,7 +242,10 @@
             <a href="#get-order-details" class="toc-h1 toc-link" data-title="Get order details">Get order details</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-order-details-get-driver-details" class="toc-h2 toc-link" data-title="Get driver details">Get driver details</a>
+                    <a href="#get-order-details-driver-details" class="toc-h2 toc-link" data-title="Driver details">Driver details</a>
+                  </li>
+                  <li>
+                    <a href="#get-order-details-driver-location" class="toc-h2 toc-link" data-title="Driver location">Driver location</a>
                   </li>
               </ul>
           </li>
@@ -310,24 +313,24 @@ You must replace <code>&lt;KEY&gt;</code>, <code>&lt;TIMESTAMP&gt;</code> and <c
 <blockquote>
 <p>Body</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"scheduleAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-19T14:30:00.00Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"serviceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAN"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"stops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;Waypoint&gt;</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;DeliveryInfo&gt;</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"requesterContact"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Contact&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"specialRequests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HELP_BUY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LALABAG"</span><span class="p">],</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">TODO</span><span class="w">
-  </span><span class="s2">"promoCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLAH"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"scheduleAt"</span><span class="p">:</span> <span class="s2">"2018-12-19T14:30:00.00Z"</span><span class="p">,</span>
+  <span class="s2">"serviceType"</span><span class="p">:</span> <span class="s2">"VAN"</span><span class="p">,</span>
+  <span class="s2">"stops"</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="nx">Waypoint</span><span class="o">&gt;</span><span class="p">],</span>
+  <span class="s2">"deliveries"</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="nx">DeliveryInfo</span><span class="o">&gt;</span><span class="p">],</span>
+  <span class="s2">"requesterContact"</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">Contact</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="s2">"specialRequests"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span> <span class="s2">"HELP_BUY"</span><span class="p">,</span> <span class="s2">"LALABAG"</span><span class="p">],</span> <span class="c1">// TODO</span>
+  <span class="s2">"promoCode"</span><span class="p">:</span> <span class="s2">"BLAH"</span>
+<span class="p">}</span>
+</code></pre>
 <blockquote>
 <p>Responses: <code>201</code></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"totalFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"totalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"totalFee"</span><span class="p">:</span> <span class="s2">"67"</span><span class="p">,</span>
+  <span class="s2">"totalFeeCurrency"</span><span class="p">:</span> <span class="s2">"SGD"</span>
+<span class="p">}</span>
+</code></pre>
 <p><code>POST</code> <code>/v2/quotations</code></p>
 
 <p>Request a quotation.</p>
@@ -372,7 +375,7 @@ You must replace <code>&lt;KEY&gt;</code>, <code>&lt;TIMESTAMP&gt;</code> and <c
 <td><code>requesterContact</code></td>
 <td>✅</td>
 <td><code>Contact</code></td>
-<td>Person of contact at <em>pick up point</em> aka <code>stop[0]</code>, see <a href="#contact"><code>Contact</code></a></td>
+<td>Person of contact at <em>pick up point</em> aka <code>stop[0]</code>, see <a href="#get-a-quotation-contact"><code>Contact</code></a></td>
 </tr>
 <tr>
 <td><code>specialRequests</code></td>
@@ -394,39 +397,135 @@ You must replace <code>&lt;KEY&gt;</code>, <code>&lt;TIMESTAMP&gt;</code> and <c
 <p><strong>Waypoint</strong>
 talk about <strong>Waypoint</strong></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13.740167"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.535237"</span><span class="w"> </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"th_TH"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"displayString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Siam Pathum Wan, Bangkok"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TH"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"location"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"lat"</span><span class="p">:</span> <span class="s2">"13.740167"</span><span class="p">,</span> <span class="s2">"lng"</span><span class="p">:</span> <span class="s2">"100.535237"</span> <span class="p">},</span>
+  <span class="s2">"addresses"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"th_TH"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"displayString"</span><span class="p">:</span> <span class="s2">"Siam Pathum Wan, Bangkok"</span><span class="p">,</span>
+      <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"TH"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 <p>hahblah blah</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>location.lat</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>location.lng</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>addresses[&lt;locale&gt;]</code></td>
+<td>✅</td>
+<td><code>object</code></td>
+<td><code>&lt;locale&gt;</code> format ISO blah</td>
+</tr>
+<tr>
+<td><code>addresses[&lt;locale&gt;].displayString</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td>becareful here blah blah blah</td>
+</tr>
+<tr>
+<td><code>addresses[&lt;locale&gt;].country</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td>ISO blah blah</td>
+</tr>
+</tbody></table>
+
+<p>✅ - <em>Required</em></p>
 <h2 id='get-a-quotation-deliveryinfo'>DeliveryInfo</h2>
 <blockquote>
 <p><strong>DeliveryInfo</strong></p>
 
 <p>hahahaha <strong>DeliveryInfo</strong></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"toStop"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"toContact"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Contact&gt;</span><span class="w">
-  </span><span class="s2">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXX"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"toStop"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"toContact"</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">Contact</span><span class="o">&gt;</span>
+  <span class="s2">"remarks"</span><span class="p">:</span> <span class="s2">"XXXXX"</span>
+<span class="p">}</span>
+</code></pre>
 <p>hahblah blah</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>toStop</code></td>
+<td>✅</td>
+<td><code>number</code></td>
+<td>The index of waypoint in <code>stops</code> this Delivery Info associates with, has to be <code>&gt;= 1</code>, since the first stop&#39;s Delivery Info is tided to <code>requesterContact</code></td>
+</tr>
+<tr>
+<td><code>toContact</code></td>
+<td>✅</td>
+<td><code>Contact</code></td>
+<td>See <a href="#get-a-quotation-contact"><code>Contact</code></a></td>
+</tr>
+<tr>
+<td><code>remarks</code></td>
+<td></td>
+<td><code>string</code></td>
+<td>Free form text the driver would see</td>
+</tr>
+</tbody></table>
+
+<p>✅ - <em>Required</em></p>
 <h2 id='get-a-quotation-contact'>Contact</h2>
 <blockquote>
 <p><strong>Contact</strong></p>
 
 <p>hahahaha <strong>Contact</strong></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mm"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9999999"</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"mm"</span><span class="p">,</span> <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"9999999"</span> <span class="p">}</span>
+</code></pre>
 <p>hahblah blah, talk about phone format etc.</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>name</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>✅ - <em>Required</em></p>
 <h1 id='place-an-order'>Place an order</h1><pre class="highlight plaintext"><code>POST https://rest.lalamove.com/v2/orders
 </code></pre>
 <blockquote>
@@ -440,16 +539,16 @@ talk about <strong>Waypoint</strong></p>
 <blockquote>
 <p>Body</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"quotedTotalFee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"callerSideCustomerOrderId"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;YOUR_UNIQUE_REF&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">merge</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">used</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">quotation</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"quotedTotalFee"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"67"</span><span class="p">,</span>
+    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"SGD"</span>
+  <span class="p">},</span>
+  <span class="s2">"callerSideCustomerOrderId"</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">YOUR_UNIQUE_REF</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="s2">"sms"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="c1">// ... merge with body used for quotation</span>
+<span class="p">}</span>
+</code></pre>
 <blockquote>
 <aside class="warning">
 <b>IMPORTANT:</b> Merge the above with the <code>body</code> that was used for <a href="#get-a-quotation">requesting quotation</a>.
@@ -457,11 +556,11 @@ talk about <strong>Waypoint</strong></p>
 
 <p>Responses: <code>201</code></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"customerOrderId"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;LALAMOVE_ORDER_ID&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"orderRef"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;LALAMOVE_ORDER_REF&gt;</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"customerOrderId"</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">LALAMOVE_ORDER_ID</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="s2">"orderRef"</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">LALAMOVE_ORDER_REF</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</code></pre>
 <p><code>POST</code> <code>/v2/orders</code></p>
 
 <p>Use the fee received from <code>/quotations</code> Blah blah blah.</p>
@@ -518,11 +617,15 @@ talk about <strong>Waypoint</strong></p>
 <blockquote>
 <p>Responses: <code>200</code></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8799752"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">TODO</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"driverId"</span><span class="p">:</span> <span class="s2">"8799752"</span><span class="p">,</span>
+  <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"COMPLETED"</span>
+  <span class="s2">"price"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"253"</span><span class="p">,</span>
+    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"THB"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 <p><code>GET</code> <code>/v2/orders/{id}</code></p>
 
 <p>Blah blah blah.</p>
@@ -540,7 +643,45 @@ talk about <strong>Waypoint</strong></p>
 <td><code>&lt;LALAMOVE_ORDER_ID&gt;</code></td>
 </tr>
 </tbody></table>
-<h2 id='get-order-details-get-driver-details'>Get driver details</h2><pre class="highlight plaintext"><code>GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
+
+<p><strong>Order Status</strong></p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ASSIGNING</code></td>
+<td>Trying to match shipment with a driver</td>
+</tr>
+<tr>
+<td><code>ONGOING</code></td>
+<td>Shipment is matched with a driver</td>
+</tr>
+<tr>
+<td><code>CANCELLED</code></td>
+<td>Shipment is cancelled before pick up</td>
+</tr>
+<tr>
+<td><code>REJECTED</code></td>
+<td>Shipment was matched and later reverted</td>
+</tr>
+<tr>
+<td><code>PICKED_UP</code></td>
+<td>Shipment is picked up by the driver</td>
+</tr>
+<tr>
+<td><code>COMPLETED</code></td>
+<td>Sucessfully delivered and transaction has concluded</td>
+</tr>
+<tr>
+<td><code>EXPIRED</code></td>
+<td>Order expired because a match could not be found</td>
+</tr>
+</tbody></table>
+<h2 id='get-order-details-driver-details'>Driver details</h2><pre class="highlight plaintext"><code>GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
 </code></pre>
 <blockquote>
 <p>Headers</p>
@@ -553,12 +694,51 @@ talk about <strong>Waypoint</strong></p>
 <blockquote>
 <p>Responses: <code>200</code></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"David"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+668912121212"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"David"</span><span class="p">,</span>
+  <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+668912121212"</span>
+<span class="p">}</span>
+</code></pre>
 <p><code>GET</code> <code>/v2/orders/{orderId}/drivers/{driverId}</code></p>
+
+<p>Blah blah blah.</p>
+
+<p><strong>URL Params</strong></p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>orderId</code></td>
+<td><code>&lt;LALAMOVE_ORDER_ID&gt;</code></td>
+</tr>
+<tr>
+<td><code>driverId</code></td>
+<td><code>driverId</code> from <code>/orders/{id}</code> response</td>
+</tr>
+</tbody></table>
+<h2 id='get-order-details-driver-location'>Driver location</h2><pre class="highlight plaintext"><code>GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}/location
+</code></pre>
+<blockquote>
+<p>Headers</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">Authorization</span><span class="pi">:</span> <span class="s">hmac &lt;TOKEN&gt;</span>
+<span class="na">Content-Type</span><span class="pi">:</span> <span class="s">application/json</span>
+<span class="na">X-LLM-Country</span><span class="pi">:</span> <span class="s">&lt;YOUR_COUNTRY&gt;</span>
+<span class="na">X-Request-ID</span><span class="pi">:</span> <span class="s">&lt;NONCE&gt;</span>
+</code></pre>
+<blockquote>
+<p>Responses: <code>200</code></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"location"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"lat"</span><span class="p">:</span> <span class="s2">"13.740167"</span><span class="p">,</span> <span class="s2">"lng"</span><span class="p">:</span> <span class="s2">"100.535237"</span> <span class="p">},</span>
+  <span class="s2">"updatedAt"</span><span class="p">:</span> <span class="s2">"2017-12-01T14:30.00Z"</span>
+<span class="p">}</span>
+</code></pre>
+<p><code>GET</code> <code>/v2/orders/{orderId}/drivers/{driverId}/location</code></p>
 
 <p>Blah blah blah.</p>
 
@@ -592,8 +772,8 @@ talk about <strong>Waypoint</strong></p>
 <blockquote>
 <p>Responses: <code>200</code></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{}</span>
+</code></pre>
 <p><code>PUT</code> <code>/v2/orders/{id}/cancel</code></p>
 
 <p>Cancellation, blah blah blah.</p>
