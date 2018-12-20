@@ -462,8 +462,7 @@ html, body {
   }
 
   aside {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding: 1em $main-padding;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;

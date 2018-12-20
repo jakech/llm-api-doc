@@ -58,15 +58,15 @@ X-Request-ID: <UUID>
 {
   "scheduleAt": "2018-12-19T14:30:00.00Z",
   "serviceType": "VAN",
-  "stops": [...],
-  "deliveries": [...],
-  "requesterContact": { "name": "Peter Pan", "phone": "81700091" },
+  "stops": [<Waypoint>],
+  "deliveries": [<DeliveryInfo>],
+  "requesterContact": <Contact>,
   "specialRequests": ["COD", "HELP_BUY", "LALABAG"],
   "promoCode": "BLAH"
 }
 ```
 
-> Responses: `200`
+> Responses: `201`
 
 ```json
 {
@@ -83,8 +83,6 @@ Will return a with an object containing the fee amount and currency of based on 
 
 **Body**
 
-✅ - _Required_
-
 |                    |     |                  |                                                                                                                                  |
 | ------------------ | --- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `scheduleAt`       | ✅  | `string`         | Pick up time in **UTC** time zone. In **ISO RFC3339** format                                                                     |
@@ -94,6 +92,8 @@ Will return a with an object containing the fee amount and currency of based on 
 | `requesterContact` | ✅  | `Contact`        | Person of contact at _pick up point_ aka `stop[0]`, see [`Contact`](#contact)                                                    |  |
 | `specialRequests`  |     | `string[]`       | blah blah blah                                                                                                                   |
 | `promoCode`        |     | `string`         | blah blah blah                                                                                                                   |
+
+✅ - _Required_
 
 ## Waypoint
 
@@ -124,6 +124,7 @@ hahblah blah
 {
   "toStop": 1,
   "toContact": <Contact>
+  "remarks": "XXXXX"
 }
 ```
 
@@ -139,7 +140,7 @@ hahblah blah
 { "name": "mm", "phone": "9999999" }
 ```
 
-hahblah blah
+hahblah blah, talk about phone format etc.
 
 # Place an order
 
@@ -160,26 +161,41 @@ X-Request-ID: <UUID>
 
 ```json
 {
-  "scheduleAt": "2018-12-19T14:30:00.00Z",
-  "serviceType": "VAN",
-  "stops": [...],
-  "deliveries": [...],
-  "requesterContact": { "name": "Peter Pan", "phone": "81700091" },
-  "specialRequests": ["COD", "HELP_BUY", "LALABAG"],
-  "promoCode": "BLAH"
+  "quotedTotalFee": {
+    "amount": "67",
+    "currency": "SGD"
+  },
+  "callerSideCustomerOrderId": <YOUR_UNIQUE_REF>,
+  "sms": false
 }
 ```
 
-> Responses: `200`
+> <aside class="warning">
+> Merge the above with the <code>body</code> that was used for <a href="#get-a-quotation">requesting quotation</a>.
+> </aside>
+
+> Responses: `201`
 
 ```json
 {
-  "totalFee": "67",
-  "totalFeeCurrency": "SGD"
+  "customerOrderId": <YOUR_UNIQUE_REF>,
+  "orderRef": "179802"
 }
 ```
 
 `POST` `/v2/orders`
 
+Use the fee received from `/quotations` Blah blah blah.
 
+**Body**
 
+<aside class="notice">The amount and currency of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
+
+|                             |     |           |                                                                    |
+| --------------------------- | --- | --------- | ------------------------------------------------------------------ |
+| `quotedTotalFee.amount`     | ✅  | `string`  | blah blah blah                                                     |
+| `quotedTotalFee.currency`   | ✅  | `string`  | adada                                                              |
+| `callerSideCustomerOrderId` |     | `string`  | adad, example usecase                                              |
+| `sms`                       |     | `boolean` | Send delivery updates SMS to **all** recipients. Default to `true` |
+
+✅ - _Required_
