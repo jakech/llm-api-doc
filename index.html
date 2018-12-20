@@ -302,15 +302,15 @@ X-Request-ID: &lt;UUID&gt;
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"scheduleAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-19T14:30:00.00Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"serviceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAN"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"stops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"requesterContact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter Pan"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"81700091"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"stops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;Waypoint&gt;</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;DeliveryInfo&gt;</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"requesterContact"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Contact&gt;</span><span class="p">,</span><span class="w">
   </span><span class="s2">"specialRequests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HELP_BUY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LALABAG"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"promoCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLAH"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Responses: <code>200</code></p>
+<p>Responses: <code>201</code></p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"totalFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67"</span><span class="p">,</span><span class="w">
@@ -403,6 +403,7 @@ talk about <strong>Waypoint</strong></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"toStop"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"toContact"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Contact&gt;</span><span class="w">
+  </span><span class="s2">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXX"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>hahblah blah</p>
@@ -414,7 +415,7 @@ talk about <strong>Waypoint</strong></p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mm"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9999999"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>hahblah blah</p>
+<p>hahblah blah, talk about phone format etc.</p>
 <h1 id='place-an-order'>Place an order</h1><pre class="highlight plaintext"><code>POST https://rest.lalamove.com/v2/orders
 </code></pre>
 <blockquote>
@@ -429,24 +430,69 @@ X-Request-ID: &lt;UUID&gt;
 <p>Body</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"scheduleAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-19T14:30:00.00Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"serviceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAN"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"stops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"requesterContact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter Pan"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"81700091"</span><span class="w"> </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"specialRequests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HELP_BUY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LALABAG"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"promoCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLAH"</span><span class="w">
+  </span><span class="s2">"quotedTotalFee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"callerSideCustomerOrderId"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;YOUR_UNIQUE_REF&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Responses: <code>200</code></p>
+<aside class="warning">
+Merge the above with the <code>body</code> that was used for <a href="#get-a-quotation">requesting quotation</a>.
+</aside>
+
+<p>Responses: <code>201</code></p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"totalFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"totalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="w">
+  </span><span class="s2">"customerOrderId"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;YOUR_UNIQUE_REF&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"orderRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179802"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><code>POST</code> <code>/v2/orders</code></p>
+
+<p>Use the fee received from <code>/quotations</code> Blah blah blah.</p>
+
+<p><strong>Body</strong></p>
+
+<aside class="notice">The amount and currency of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>quotedTotalFee.amount</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td>blah blah blah</td>
+</tr>
+<tr>
+<td><code>quotedTotalFee.currency</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td>adada</td>
+</tr>
+<tr>
+<td><code>callerSideCustomerOrderId</code></td>
+<td></td>
+<td><code>string</code></td>
+<td>adad, example usecase</td>
+</tr>
+<tr>
+<td><code>sms</code></td>
+<td></td>
+<td><code>boolean</code></td>
+<td>Send delivery updates SMS to <strong>all</strong> recipients. Default to <code>true</code></td>
+</tr>
+</tbody></table>
+
+<p>✅ - <em>Required</em></p>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
