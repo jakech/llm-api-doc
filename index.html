@@ -1,0 +1,514 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Lalamove API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#get-a-quotation" class="toc-h1 toc-link" data-title="Get a quotation">Get a quotation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#waypoint" class="toc-h2 toc-link" data-title="Waypoint">Waypoint</a>
+                  </li>
+                  <li>
+                    <a href="#deliveryinfo" class="toc-h2 toc-link" data-title="DeliveryInfo">DeliveryInfo</a>
+                  </li>
+                  <li>
+                    <a href="#contact" class="toc-h2 toc-link" data-title="Contact">Contact</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#place-an-order" class="toc-h1 toc-link" data-title="Place an order">Place an order</a>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>The lalamove API lets you integrate your application and business with express delivery, including following end points for our client to use.</p>
+
+<p><strong>APIPurpose</strong>1QuotationAllow the user to get quotation of an order, delivery with multiple stops and schedule order of a specific time2Place orderAllow the user to place an order with a defined value from our quotation API3Get order detailsAllow the user to retrieve the order information4Get order&#39;s driver informationAllow the user to retrieve the driver information of an order5Get order&#39;s driver locationAllow the user to retrieve the driver latest location6Cancel orderAllow the user to cancel the order before the driver is matched and less than 3 mins after driver is matched. (cannot cancel after driver has arrived first stop)</p>
+<h1 id='authentication'>Authentication</h1>
+<p>Lalamove API makes use of <a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code">HMAC</a> (SHA256) as the authentication mechanism.</p>
+
+<p>Customers will be provided with a api key(a fixed unique identifier given by lalamove representing the customer identity), and a secret for generating <a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code">HMAC</a> hash (also known as a signature).</p>
+
+<p>Every call <strong>MUST</strong> include this header.</p>
+
+<p><code>Authorization: hmac &lt;KEY&gt;:&lt;TIMESTAMP&gt;:&lt;SIGNATURE&gt;</code></p>
+
+<aside class="notice">
+You must replace <code>&lt;KEY&gt;</code>, <code>&lt;TIMESTAMP&gt;</code> and <code>&lt;SIGNATURE&gt;</code> with the following...
+</aside>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&lt;KEY&gt;</code></td>
+<td>lalala</td>
+</tr>
+<tr>
+<td><code>&lt;TIMESTAMP&gt;</code></td>
+<td>lalala</td>
+</tr>
+<tr>
+<td><code>&lt;SIGNATURE&gt;</code></td>
+<td>lalala</td>
+</tr>
+</tbody></table>
+<h1 id='get-a-quotation'>Get a quotation</h1><pre class="highlight plaintext"><code>POST https://rest.lalamove.com/v2/quotations
+</code></pre>
+<blockquote>
+<p>Headers</p>
+</blockquote>
+<pre class="highlight plaintext"><code>Authorization: hmac &lt;TOKEN&gt;
+Content-Type: application/json
+X-LLM-Country: &lt;YOUR_COUNTRY&gt;
+X-Request-ID: &lt;UUID&gt;
+</code></pre>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"scheduleAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-19T14:30:00.00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"serviceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAN"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"stops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"requesterContact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter Pan"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"81700091"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"specialRequests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HELP_BUY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LALABAG"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"promoCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLAH"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Responses: <code>200</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"totalFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Request a quotation.</p>
+
+<p>Will return a with an object containing the fee amount and currency of based on information provided.</p>
+
+<p><code>POST</code> <code>/v2/quotations</code></p>
+
+<p><strong>Body</strong></p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>scheduleAt</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td>Pick up time in <strong>UTC</strong> time zone. In <strong>ISO RFC3339</strong> format</td>
+</tr>
+<tr>
+<td><code>serviceType</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td><code>MOTORCYCLE</code>- <strong>50 × 50 × 50 cm</strong> or less <br><code>MPV</code> - <strong>115 × 115 × 80 cm</strong> or less <br> <code>TRUCK</code>- <strong>170 × 150 × 170 cm</strong> or less</td>
+</tr>
+<tr>
+<td><code>stops</code></td>
+<td>✅</td>
+<td><code>Waypoint[]</code></td>
+<td>Array of <a href="#waypoint"><code>Waypoint</code></a> (minimum 2, maximum 10)</td>
+</tr>
+<tr>
+<td><code>deliveries</code></td>
+<td>✅</td>
+<td><code>DeliveryInfo[]</code></td>
+<td>Array of <a href="#deliveryinfo"><code>DeliveryInfo</code></a> like contact person, mobile phone number and remarks for each item</td>
+</tr>
+<tr>
+<td><code>requesterContact</code></td>
+<td>✅</td>
+<td><code>Contact</code></td>
+<td>Person of contact at <em>pick up point</em> aka <code>stop[0]</code>, see <a href="#contact"><code>Contact</code></a></td>
+</tr>
+<tr>
+<td><code>specialRequests</code></td>
+<td></td>
+<td><code>string[]</code></td>
+<td>blah blah blah</td>
+</tr>
+<tr>
+<td><code>promoCode</code></td>
+<td></td>
+<td><code>string</code></td>
+<td>blah blah blah</td>
+</tr>
+</tbody></table>
+
+<p>✅ - <em>Required</em></p>
+<h2 id='waypoint'>Waypoint</h2>
+<blockquote>
+<p><strong>Waypoint</strong>
+talk about <strong>Waypoint</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13.740167"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.535237"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"th_TH"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"displayString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Siam Pathum Wan, Bangkok"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TH"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>hahblah blah</p>
+<h2 id='deliveryinfo'>DeliveryInfo</h2>
+<blockquote>
+<p><strong>DeliveryInfo</strong></p>
+
+<p>hahahaha <strong>DeliveryInfo</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"toStop"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"toContact"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Contact&gt;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>hahblah blah</p>
+<h2 id='contact'>Contact</h2>
+<blockquote>
+<p><strong>Contact</strong></p>
+
+<p>hahahaha <strong>Contact</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mm"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9999999"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>hahblah blah</p>
+<h1 id='place-an-order'>Place an order</h1><pre class="highlight plaintext"><code>POST https://rest.lalamove.com/v2/orders
+</code></pre>
+<blockquote>
+<p>Headers</p>
+</blockquote>
+<pre class="highlight plaintext"><code>Authorization: hmac &lt;TOKEN&gt;
+Content-Type: application/json
+X-LLM-Country: &lt;YOUR_COUNTRY&gt;
+X-Request-ID: &lt;UUID&gt;
+</code></pre>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"scheduleAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-19T14:30:00.00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"serviceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAN"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"stops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"requesterContact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter Pan"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"81700091"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"specialRequests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HELP_BUY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LALABAG"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"promoCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLAH"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Responses: <code>200</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"totalFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>POST</code> <code>/v2/orders</code></p>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified kitten could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
