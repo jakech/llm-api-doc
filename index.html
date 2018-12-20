@@ -239,6 +239,12 @@
             <a href="#place-an-order" class="toc-h1 toc-link" data-title="Place an order">Place an order</a>
           </li>
           <li>
+            <a href="#get-order-details" class="toc-h1 toc-link" data-title="Get order details">Get order details</a>
+          </li>
+          <li>
+            <a href="#cancel-an-order" class="toc-h1 toc-link" data-title="Cancel an order">Cancel an order</a>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -291,10 +297,10 @@ You must replace <code>&lt;KEY&gt;</code>, <code>&lt;TIMESTAMP&gt;</code> and <c
 <blockquote>
 <p>Headers</p>
 </blockquote>
-<pre class="highlight plaintext"><code>Authorization: hmac &lt;TOKEN&gt;
-Content-Type: application/json
-X-LLM-Country: &lt;YOUR_COUNTRY&gt;
-X-Request-ID: &lt;UUID&gt;
+<pre class="highlight yaml tab-yaml"><code><span class="na">Authorization</span><span class="pi">:</span> <span class="s">hmac &lt;TOKEN&gt;</span>
+<span class="na">Content-Type</span><span class="pi">:</span> <span class="s">application/json</span>
+<span class="na">X-LLM-Country</span><span class="pi">:</span> <span class="s">&lt;YOUR_COUNTRY&gt;</span>
+<span class="na">X-Request-ID</span><span class="pi">:</span> <span class="s">&lt;NONCE&gt;</span>
 </code></pre>
 <blockquote>
 <p>Body</p>
@@ -317,11 +323,11 @@ X-Request-ID: &lt;UUID&gt;
   </span><span class="s2">"totalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p><code>POST</code> <code>/v2/quotations</code></p>
+
 <p>Request a quotation.</p>
 
 <p>Will return a with an object containing the fee amount and currency of based on information provided.</p>
-
-<p><code>POST</code> <code>/v2/quotations</code></p>
 
 <p><strong>Body</strong></p>
 
@@ -421,10 +427,10 @@ talk about <strong>Waypoint</strong></p>
 <blockquote>
 <p>Headers</p>
 </blockquote>
-<pre class="highlight plaintext"><code>Authorization: hmac &lt;TOKEN&gt;
-Content-Type: application/json
-X-LLM-Country: &lt;YOUR_COUNTRY&gt;
-X-Request-ID: &lt;UUID&gt;
+<pre class="highlight yaml tab-yaml"><code><span class="na">Authorization</span><span class="pi">:</span> <span class="s">hmac &lt;TOKEN&gt;</span>
+<span class="na">Content-Type</span><span class="pi">:</span> <span class="s">application/json</span>
+<span class="na">X-LLM-Country</span><span class="pi">:</span> <span class="s">&lt;YOUR_COUNTRY&gt;</span>
+<span class="na">X-Request-ID</span><span class="pi">:</span> <span class="s">&lt;NONCE&gt;</span>
 </code></pre>
 <blockquote>
 <p>Body</p>
@@ -435,12 +441,13 @@ X-Request-ID: &lt;UUID&gt;
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"callerSideCustomerOrderId"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;YOUR_UNIQUE_REF&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <aside class="warning">
-Merge the above with the <code>body</code> that was used for <a href="#get-a-quotation">requesting quotation</a>.
+<b>IMPORTANT:</b> Merge the above with the <code>body</code> that was used for <a href="#get-a-quotation">requesting quotation</a>.
 </aside>
 
 <p>Responses: <code>201</code></p>
@@ -489,6 +496,93 @@ Merge the above with the <code>body</code> that was used for <a href="#get-a-quo
 <td></td>
 <td><code>boolean</code></td>
 <td>Send delivery updates SMS to <strong>all</strong> recipients. Default to <code>true</code></td>
+</tr>
+</tbody></table>
+
+<p>✅ - <em>Required</em></p>
+<h1 id='get-order-details'>Get order details</h1>
+<p><code>POST</code> <code>/v2/orders</code></p>
+
+<p>Use the fee received from <code>/quotations</code> Blah blah blah.</p>
+
+<p><strong>Body</strong></p>
+
+<aside class="notice">The amount and currency of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>quotedTotalFee.amount</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td>blah blah blah</td>
+</tr>
+<tr>
+<td><code>quotedTotalFee.currency</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td>adada</td>
+</tr>
+<tr>
+<td><code>callerSideCustomerOrderId</code></td>
+<td></td>
+<td><code>string</code></td>
+<td>adad, example usecase</td>
+</tr>
+<tr>
+<td><code>sms</code></td>
+<td></td>
+<td><code>boolean</code></td>
+<td>Send delivery updates SMS to <strong>all</strong> recipients. Default to <code>true</code></td>
+</tr>
+</tbody></table>
+
+<p>✅ - <em>Required</em></p>
+<h1 id='cancel-an-order'>Cancel an order</h1><pre class="highlight plaintext"><code>PUT https://rest.lalamove.com/v2/orders/{customerOrderId}/cancel
+</code></pre>
+<blockquote>
+<p>Headers</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">Authorization</span><span class="pi">:</span> <span class="s">hmac &lt;TOKEN&gt;</span>
+<span class="na">Content-Type</span><span class="pi">:</span> <span class="s">application/json</span>
+<span class="na">X-LLM-Country</span><span class="pi">:</span> <span class="s">&lt;YOUR_COUNTRY&gt;</span>
+<span class="na">X-Request-ID</span><span class="pi">:</span> <span class="s">&lt;NONCE&gt;</span>
+</code></pre>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Responses: <code>200</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+<p><code>PUT</code> <code>/v2/orders/{id}/cancel</code></p>
+
+<p>Cancellation, blah blah blah.</p>
+
+<p><strong>URL Params</strong></p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>✅</td>
+<td><code>string</code></td>
+<td>blah blah blah</td>
 </tr>
 </tbody></table>
 
