@@ -10,7 +10,7 @@ POST https://rest.lalamove.com/v2/orders
 Authorization: hmac <TOKEN>
 Content-Type: application/json
 X-LLM-Country: <YOUR_COUNTRY>
-X-Request-ID: <NONCE>
+X-Request-ID: <NONCE> # TODO
 ```
 
 > Body
@@ -23,7 +23,7 @@ X-Request-ID: <NONCE>
   },
   "callerSideCustomerOrderId": <YOUR_UNIQUE_REF>,
   "sms": false,
-  ...
+  // ... merge with body used for quotation
 }
 ```
 
@@ -35,8 +35,8 @@ X-Request-ID: <NONCE>
 
 ```json
 {
-  "customerOrderId": <YOUR_UNIQUE_REF>,
-  "orderRef": "179802"
+  "customerOrderId": <LALAMOVE_ORDER_ID>,
+  "orderRef": <LALAMOVE_ORDER_REF>
 }
 ```
 
@@ -44,9 +44,9 @@ X-Request-ID: <NONCE>
 
 Use the fee received from `/quotations` Blah blah blah.
 
-**Body**
-
 <aside class="notice">The amount and currency of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
+
+**Body**
 
 |                             |     |           |                                                                    |
 | --------------------------- | --- | --------- | ------------------------------------------------------------------ |

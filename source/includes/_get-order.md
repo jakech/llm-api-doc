@@ -1,18 +1,68 @@
 # Get order details
 
-`POST` `/v2/orders`
+```
+GET https://rest.lalamove.com/v2/orders/{id}
+```
 
-Use the fee received from `/quotations` Blah blah blah.
+> Headers
 
-**Body**
+```yaml
+Authorization: hmac <TOKEN>
+Content-Type: application/json
+X-LLM-Country: <YOUR_COUNTRY>
+X-Request-ID: <NONCE>
+```
 
-<aside class="notice">The amount and currency of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
+> Responses: `200`
 
-|                             |     |           |                                                                    |
-| --------------------------- | --- | --------- | ------------------------------------------------------------------ |
-| `quotedTotalFee.amount`     | ✅  | `string`  | blah blah blah                                                     |
-| `quotedTotalFee.currency`   | ✅  | `string`  | adada                                                              |
-| `callerSideCustomerOrderId` |     | `string`  | adad, example usecase                                              |
-| `sms`                       |     | `boolean` | Send delivery updates SMS to **all** recipients. Default to `true` |
+```json
+{
+  "driverId": "8799752",
+  "status": "COMPLETED" // TODO
+}
+```
 
-✅ - _Required_
+`GET` `/v2/orders/{id}`
+
+Blah blah blah.
+
+**URL Params**
+
+|      |                       |
+| ---- | --------------------- |
+| `id` | `<LALAMOVE_ORDER_ID>` |
+
+## Get driver details
+
+```
+GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
+```
+
+> Headers
+
+```yaml
+Authorization: hmac <TOKEN>
+Content-Type: application/json
+X-LLM-Country: <YOUR_COUNTRY>
+X-Request-ID: <NONCE>
+```
+
+> Responses: `200`
+
+```json
+{
+  "name": "David",
+  "phone": "+668912121212"
+}
+```
+
+`GET` `/v2/orders/{orderId}/drivers/{driverId}`
+
+Blah blah blah.
+
+**URL Params**
+
+|            |                                        |
+| ---------- | -------------------------------------- |
+| `orderId`  | `<LALAMOVE_ORDER_ID>`                  |
+| `driverId` | `driverId` from `/orders/{id}` response |

@@ -22,7 +22,7 @@ X-Request-ID: <NONCE>
   "stops": [<Waypoint>],
   "deliveries": [<DeliveryInfo>],
   "requesterContact": <Contact>,
-  "specialRequests": ["COD", "HELP_BUY", "LALABAG"],
+  "specialRequests": ["COD", "HELP_BUY", "LALABAG"], // TODO
   "promoCode": "BLAH"
 }
 ```
