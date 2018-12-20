@@ -15,7 +15,7 @@ X-Request-ID: <NONCE>
 
 > Body
 
-```json
+```js
 {
   "scheduleAt": "2018-12-19T14:30:00.00Z",
   "serviceType": "VAN",
@@ -29,7 +29,7 @@ X-Request-ID: <NONCE>
 
 > Responses: `201`
 
-```json
+```js
 {
   "totalFee": "67",
   "totalFeeCurrency": "SGD"
@@ -61,7 +61,7 @@ Will return a with an object containing the fee amount and currency of based on 
 > **Waypoint**
 > talk about **Waypoint**
 
-```json
+```js
 {
   "location": { "lat": "13.740167", "lng": "100.535237" },
   "addresses": {
@@ -81,7 +81,7 @@ hahblah blah
 
 > hahahaha **DeliveryInfo**
 
-```json
+```js
 {
   "toStop": 1,
   "toContact": <Contact>
@@ -97,7 +97,7 @@ hahblah blah
 
 > hahahaha **Contact**
 
-```json
+```js
 { "name": "mm", "phone": "9999999" }
 ```
 

@@ -15,7 +15,7 @@ X-Request-ID: <NONCE>
 
 > Responses: `200`
 
-```json
+```js
 {}
 ```
 

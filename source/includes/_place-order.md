@@ -15,7 +15,7 @@ X-Request-ID: <NONCE> # TODO
 
 > Body
 
-```json
+```js
 {
   "quotedTotalFee": {
     "amount": "67",
@@ -33,7 +33,7 @@ X-Request-ID: <NONCE> # TODO
 
 > Responses: `201`
 
-```json
+```js
 {
   "customerOrderId": <LALAMOVE_ORDER_ID>,
   "orderRef": <LALAMOVE_ORDER_REF>
