@@ -225,13 +225,13 @@
             <a href="#get-a-quotation" class="toc-h1 toc-link" data-title="Get a quotation">Get a quotation</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#waypoint" class="toc-h2 toc-link" data-title="Waypoint">Waypoint</a>
+                    <a href="#get-a-quotation-waypoint" class="toc-h2 toc-link" data-title="Waypoint">Waypoint</a>
                   </li>
                   <li>
-                    <a href="#deliveryinfo" class="toc-h2 toc-link" data-title="DeliveryInfo">DeliveryInfo</a>
+                    <a href="#get-a-quotation-deliveryinfo" class="toc-h2 toc-link" data-title="DeliveryInfo">DeliveryInfo</a>
                   </li>
                   <li>
-                    <a href="#contact" class="toc-h2 toc-link" data-title="Contact">Contact</a>
+                    <a href="#get-a-quotation-contact" class="toc-h2 toc-link" data-title="Contact">Contact</a>
                   </li>
               </ul>
           </li>
@@ -240,6 +240,11 @@
           </li>
           <li>
             <a href="#get-order-details" class="toc-h1 toc-link" data-title="Get order details">Get order details</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-order-details-get-driver-details" class="toc-h2 toc-link" data-title="Get driver details">Get driver details</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#cancel-an-order" class="toc-h1 toc-link" data-title="Cancel an order">Cancel an order</a>
@@ -311,7 +316,7 @@ You must replace <code>&lt;KEY&gt;</code>, <code>&lt;TIMESTAMP&gt;</code> and <c
   </span><span class="s2">"stops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;Waypoint&gt;</span><span class="p">],</span><span class="w">
   </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;DeliveryInfo&gt;</span><span class="p">],</span><span class="w">
   </span><span class="s2">"requesterContact"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Contact&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"specialRequests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HELP_BUY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LALABAG"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"specialRequests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HELP_BUY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LALABAG"</span><span class="p">],</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">TODO</span><span class="w">
   </span><span class="s2">"promoCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLAH"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -384,7 +389,7 @@ You must replace <code>&lt;KEY&gt;</code>, <code>&lt;TIMESTAMP&gt;</code> and <c
 </tbody></table>
 
 <p>✅ - <em>Required</em></p>
-<h2 id='waypoint'>Waypoint</h2>
+<h2 id='get-a-quotation-waypoint'>Waypoint</h2>
 <blockquote>
 <p><strong>Waypoint</strong>
 talk about <strong>Waypoint</strong></p>
@@ -400,7 +405,7 @@ talk about <strong>Waypoint</strong></p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>hahblah blah</p>
-<h2 id='deliveryinfo'>DeliveryInfo</h2>
+<h2 id='get-a-quotation-deliveryinfo'>DeliveryInfo</h2>
 <blockquote>
 <p><strong>DeliveryInfo</strong></p>
 
@@ -413,7 +418,7 @@ talk about <strong>Waypoint</strong></p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>hahblah blah</p>
-<h2 id='contact'>Contact</h2>
+<h2 id='get-a-quotation-contact'>Contact</h2>
 <blockquote>
 <p><strong>Contact</strong></p>
 
@@ -430,7 +435,7 @@ talk about <strong>Waypoint</strong></p>
 <pre class="highlight yaml tab-yaml"><code><span class="na">Authorization</span><span class="pi">:</span> <span class="s">hmac &lt;TOKEN&gt;</span>
 <span class="na">Content-Type</span><span class="pi">:</span> <span class="s">application/json</span>
 <span class="na">X-LLM-Country</span><span class="pi">:</span> <span class="s">&lt;YOUR_COUNTRY&gt;</span>
-<span class="na">X-Request-ID</span><span class="pi">:</span> <span class="s">&lt;NONCE&gt;</span>
+<span class="na">X-Request-ID</span><span class="pi">:</span> <span class="s">&lt;NONCE&gt;</span> <span class="c1"># TODO</span>
 </code></pre>
 <blockquote>
 <p>Body</p>
@@ -442,7 +447,7 @@ talk about <strong>Waypoint</strong></p>
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"callerSideCustomerOrderId"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;YOUR_UNIQUE_REF&gt;</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="err">...</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">merge</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">used</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">quotation</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -453,17 +458,17 @@ talk about <strong>Waypoint</strong></p>
 <p>Responses: <code>201</code></p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"customerOrderId"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;YOUR_UNIQUE_REF&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"orderRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"179802"</span><span class="w">
+  </span><span class="s2">"customerOrderId"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;LALAMOVE_ORDER_ID&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"orderRef"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;LALAMOVE_ORDER_REF&gt;</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><code>POST</code> <code>/v2/orders</code></p>
 
 <p>Use the fee received from <code>/quotations</code> Blah blah blah.</p>
 
-<p><strong>Body</strong></p>
-
 <aside class="notice">The amount and currency of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
+
+<p><strong>Body</strong></p>
 
 <table><thead>
 <tr>
@@ -500,51 +505,7 @@ talk about <strong>Waypoint</strong></p>
 </tbody></table>
 
 <p>✅ - <em>Required</em></p>
-<h1 id='get-order-details'>Get order details</h1>
-<p><code>POST</code> <code>/v2/orders</code></p>
-
-<p>Use the fee received from <code>/quotations</code> Blah blah blah.</p>
-
-<p><strong>Body</strong></p>
-
-<aside class="notice">The amount and currency of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>quotedTotalFee.amount</code></td>
-<td>✅</td>
-<td><code>string</code></td>
-<td>blah blah blah</td>
-</tr>
-<tr>
-<td><code>quotedTotalFee.currency</code></td>
-<td>✅</td>
-<td><code>string</code></td>
-<td>adada</td>
-</tr>
-<tr>
-<td><code>callerSideCustomerOrderId</code></td>
-<td></td>
-<td><code>string</code></td>
-<td>adad, example usecase</td>
-</tr>
-<tr>
-<td><code>sms</code></td>
-<td></td>
-<td><code>boolean</code></td>
-<td>Send delivery updates SMS to <strong>all</strong> recipients. Default to <code>true</code></td>
-</tr>
-</tbody></table>
-
-<p>✅ - <em>Required</em></p>
-<h1 id='cancel-an-order'>Cancel an order</h1><pre class="highlight plaintext"><code>PUT https://rest.lalamove.com/v2/orders/{customerOrderId}/cancel
+<h1 id='get-order-details'>Get order details</h1><pre class="highlight plaintext"><code>GET https://rest.lalamove.com/v2/orders/{id}
 </code></pre>
 <blockquote>
 <p>Headers</p>
@@ -555,10 +516,79 @@ talk about <strong>Waypoint</strong></p>
 <span class="na">X-Request-ID</span><span class="pi">:</span> <span class="s">&lt;NONCE&gt;</span>
 </code></pre>
 <blockquote>
-<p>Body</p>
+<p>Responses: <code>200</code></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8799752"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">TODO</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p><code>GET</code> <code>/v2/orders/{id}</code></p>
+
+<p>Blah blah blah.</p>
+
+<p><strong>URL Params</strong></p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>&lt;LALAMOVE_ORDER_ID&gt;</code></td>
+</tr>
+</tbody></table>
+<h2 id='get-order-details-get-driver-details'>Get driver details</h2><pre class="highlight plaintext"><code>GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
+</code></pre>
+<blockquote>
+<p>Headers</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">Authorization</span><span class="pi">:</span> <span class="s">hmac &lt;TOKEN&gt;</span>
+<span class="na">Content-Type</span><span class="pi">:</span> <span class="s">application/json</span>
+<span class="na">X-LLM-Country</span><span class="pi">:</span> <span class="s">&lt;YOUR_COUNTRY&gt;</span>
+<span class="na">X-Request-ID</span><span class="pi">:</span> <span class="s">&lt;NONCE&gt;</span>
+</code></pre>
+<blockquote>
+<p>Responses: <code>200</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"David"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+668912121212"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET</code> <code>/v2/orders/{orderId}/drivers/{driverId}</code></p>
+
+<p>Blah blah blah.</p>
+
+<p><strong>URL Params</strong></p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>orderId</code></td>
+<td><code>&lt;LALAMOVE_ORDER_ID&gt;</code></td>
+</tr>
+<tr>
+<td><code>driverId</code></td>
+<td><code>driverId</code> from <code>/orders/{id}</code> response</td>
+</tr>
+</tbody></table>
+<h1 id='cancel-an-order'>Cancel an order</h1><pre class="highlight plaintext"><code>PUT https://rest.lalamove.com/v2/orders/{id}/cancel
+</code></pre>
+<blockquote>
+<p>Headers</p>
+</blockquote>
+<pre class="highlight yaml tab-yaml"><code><span class="na">Authorization</span><span class="pi">:</span> <span class="s">hmac &lt;TOKEN&gt;</span>
+<span class="na">Content-Type</span><span class="pi">:</span> <span class="s">application/json</span>
+<span class="na">X-LLM-Country</span><span class="pi">:</span> <span class="s">&lt;YOUR_COUNTRY&gt;</span>
+<span class="na">X-Request-ID</span><span class="pi">:</span> <span class="s">&lt;NONCE&gt;</span>
+</code></pre>
 <blockquote>
 <p>Responses: <code>200</code></p>
 </blockquote>
@@ -574,19 +604,13 @@ talk about <strong>Waypoint</strong></p>
 <tr>
 <th></th>
 <th></th>
-<th></th>
-<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>id</code></td>
-<td>✅</td>
-<td><code>string</code></td>
-<td>blah blah blah</td>
+<td><code>&lt;LALAMOVE_ORDER_ID&gt;</code></td>
 </tr>
 </tbody></table>
-
-<p>✅ - <em>Required</em></p>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
