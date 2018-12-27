@@ -265,10 +265,21 @@
             <a href="#cancel-an-order" class="toc-h1 toc-link" data-title="Cancel an order">Cancel an order</a>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#available-countries" class="toc-h1 toc-link" data-title="Available countries">Available countries</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#available-countries-service-types" class="toc-h2 toc-link" data-title="Service types">Service types</a>
+                  </li>
+                  <li>
+                    <a href="#available-countries-special-requests" class="toc-h2 toc-link" data-title="Special requests">Special requests</a>
+                  </li>
+                  <li>
+                    <a href="#available-countries-phone-validations" class="toc-h2 toc-link" data-title="Phone validations">Phone validations</a>
+                  </li>
+              </ul>
           </li>
           <li>
-            <a href="#available-countries" class="toc-h1 toc-link" data-title="Available countries">Available countries</a>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -437,53 +448,52 @@ Currently, API keys are limited to a <b>single country/region</b>.
 </thead><tbody>
 <tr>
 <td><code>scheduleAt</code></td>
-<td>✅</td>
+<td></td>
 <td><code>string</code></td>
 <td>Pick up time in <strong>UTC</strong> time zone. In <strong>ISO RFC3339</strong> format</td>
 </tr>
 <tr>
 <td><code>serviceType</code></td>
-<td>✅</td>
+<td></td>
 <td><code>string</code></td>
 <td><code>MOTORCYCLE</code>- <strong>50 × 50 × 50 cm</strong> or less <br><code>MPV</code> - <strong>115 × 115 × 80 cm</strong> or less <br> <code>TRUCK</code>- <strong>170 × 150 × 170 cm</strong> or less</td>
 </tr>
 <tr>
 <td><code>stops</code></td>
-<td>✅</td>
+<td></td>
 <td><code>Waypoint[]</code></td>
-<td>Array of <a href="#waypoint"><code>Waypoint</code></a> (minimum 2, maximum 10)</td>
+<td>Array of <a href="#waypoint"><code>Waypoint</code></a>s (minimum 2, maximum 10)</td>
 </tr>
 <tr>
 <td><code>deliveries</code></td>
-<td>✅</td>
+<td></td>
 <td><code>DeliveryInfo[]</code></td>
-<td>Array of <a href="#deliveryinfo"><code>DeliveryInfo</code></a> like contact person, mobile phone number and remarks for each item</td>
+<td>Array of <a href="#deliveryinfo"><code>DeliveryInfo</code></a>s</td>
 </tr>
 <tr>
 <td><code>requesterContact</code></td>
-<td>✅</td>
+<td></td>
 <td><code>Contact</code></td>
 <td>Person of contact at <em>pick up point</em> aka <code>stop[0]</code>, see <a href="#get-a-quotation-contact"><code>Contact</code></a></td>
 </tr>
 <tr>
 <td><code>specialRequests</code></td>
-<td></td>
+<td>🤷‍♀️</td>
 <td><code>string[]</code></td>
 <td>blah blah blah</td>
 </tr>
 <tr>
 <td><code>promoCode</code></td>
-<td></td>
+<td>🤷‍♀️</td>
 <td><code>string</code></td>
 <td>blah blah blah</td>
 </tr>
 </tbody></table>
 
-<p>✅ - <em>Required</em></p>
+<p>🤷‍♀️ - <em>Optional</em></p>
 <h2 id='get-a-quotation-waypoint'>Waypoint</h2>
 <blockquote>
-<p><strong>Waypoint</strong>
-talk about <strong>Waypoint</strong></p>
+<p><strong>Waypoint</strong></p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="p">{</span>
   <span class="s2">"location"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"lat"</span><span class="p">:</span> <span class="s2">"13.740167"</span><span class="p">,</span> <span class="s2">"lng"</span><span class="p">:</span> <span class="s2">"100.535237"</span> <span class="p">},</span>
@@ -495,11 +505,12 @@ talk about <strong>Waypoint</strong></p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<p>hahblah blah</p>
+<p><code>LOCALE</code> is composed of <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> language code and <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> country code as follow:</p>
+
+<p><code>{ISO 639-1}_{ISO 3166-1 alpha-2}</code>.</p>
 
 <table><thead>
 <tr>
-<th></th>
 <th></th>
 <th></th>
 <th></th>
@@ -507,42 +518,28 @@ talk about <strong>Waypoint</strong></p>
 </thead><tbody>
 <tr>
 <td><code>location.lat</code></td>
-<td>✅</td>
 <td><code>string</code></td>
 <td></td>
 </tr>
 <tr>
 <td><code>location.lng</code></td>
-<td>✅</td>
 <td><code>string</code></td>
 <td></td>
 </tr>
 <tr>
-<td><code>addresses[&lt;locale&gt;]</code></td>
-<td>✅</td>
-<td><code>object</code></td>
-<td><code>&lt;locale&gt;</code> format ISO blah</td>
-</tr>
-<tr>
-<td><code>addresses[&lt;locale&gt;].displayString</code></td>
-<td>✅</td>
+<td><code>addresses[&lt;LOCALE&gt;].displayString</code></td>
 <td><code>string</code></td>
 <td>becareful here blah blah blah</td>
 </tr>
 <tr>
-<td><code>addresses[&lt;locale&gt;].country</code></td>
-<td>✅</td>
+<td><code>addresses[&lt;LOCALE&gt;].country</code></td>
 <td><code>string</code></td>
-<td>ISO blah blah</td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a>. <a href="#available-countries">See Available countries</a></td>
 </tr>
 </tbody></table>
-
-<p>✅ - <em>Required</em></p>
 <h2 id='get-a-quotation-deliveryinfo'>DeliveryInfo</h2>
 <blockquote>
 <p><strong>DeliveryInfo</strong></p>
-
-<p>hahahaha <strong>DeliveryInfo</strong></p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="p">{</span>
   <span class="s2">"toStop"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -550,7 +547,7 @@ talk about <strong>Waypoint</strong></p>
   <span class="s2">"remarks"</span><span class="p">:</span> <span class="s2">"XXXXX"</span>
 <span class="p">}</span>
 </code></pre>
-<p>hahblah blah</p>
+<p>Contact person, mobile phone number and remarks for each <a href="#get-a-quotation-waypoint">Waypoint</a> excluding the pick up point.</p>
 
 <table><thead>
 <tr>
@@ -562,25 +559,25 @@ talk about <strong>Waypoint</strong></p>
 </thead><tbody>
 <tr>
 <td><code>toStop</code></td>
-<td>✅</td>
+<td></td>
 <td><code>number</code></td>
 <td>The index of waypoint in <code>stops</code> this Delivery Info associates with, has to be <code>&gt;= 1</code>, since the first stop&#39;s Delivery Info is tided to <code>requesterContact</code></td>
 </tr>
 <tr>
 <td><code>toContact</code></td>
-<td>✅</td>
+<td></td>
 <td><code>Contact</code></td>
 <td>See <a href="#get-a-quotation-contact"><code>Contact</code></a></td>
 </tr>
 <tr>
 <td><code>remarks</code></td>
-<td></td>
+<td>🤷‍♀️</td>
 <td><code>string</code></td>
 <td>Free form text the driver would see</td>
 </tr>
 </tbody></table>
 
-<p>✅ - <em>Required</em></p>
+<p>🤷‍♀️ - <em>Optional</em></p>
 <h2 id='get-a-quotation-contact'>Contact</h2>
 <blockquote>
 <p><strong>Contact</strong></p>
@@ -596,24 +593,19 @@ talk about <strong>Waypoint</strong></p>
 <th></th>
 <th></th>
 <th></th>
-<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>name</code></td>
-<td>✅</td>
 <td><code>string</code></td>
 <td></td>
 </tr>
 <tr>
 <td><code>phone</code></td>
-<td>✅</td>
 <td><code>string</code></td>
 <td></td>
 </tr>
 </tbody></table>
-
-<p>✅ - <em>Required</em></p>
 <h1 id='place-an-order'>Place an order</h1><pre class="highlight plaintext tab-plaintext--prod"><code>POST https://rest.lalamove.com/v2/orders
 </code></pre><pre class="highlight plaintext tab-plaintext--sandbox"><code>POST https://sandbox-rest.lalamove.com/v2/orders
 </code></pre>
@@ -660,31 +652,31 @@ talk about <strong>Waypoint</strong></p>
 </thead><tbody>
 <tr>
 <td><code>quotedTotalFee.amount</code></td>
-<td>✅</td>
+<td></td>
 <td><code>string</code></td>
 <td>blah blah blah</td>
 </tr>
 <tr>
 <td><code>quotedTotalFee.currency</code></td>
-<td>✅</td>
+<td></td>
 <td><code>string</code></td>
 <td>adada</td>
 </tr>
 <tr>
 <td><code>callerSideCustomerOrderId</code></td>
-<td></td>
+<td>🤷‍♀️</td>
 <td><code>string</code></td>
 <td>adad, example usecase</td>
 </tr>
 <tr>
 <td><code>sms</code></td>
-<td></td>
+<td>🤷‍♀️</td>
 <td><code>boolean</code></td>
 <td>Send delivery updates SMS to <strong>all</strong> recipients. Default to <code>true</code></td>
 </tr>
 </tbody></table>
 
-<p>✅ - <em>Required</em></p>
+<p>🤷‍♀️ - <em>Optional</em></p>
 <h1 id='get-order-details'>Get order details</h1><pre class="highlight plaintext tab-plaintext--prod"><code>GET https://rest.lalamove.com/v2/orders/{id}
 </code></pre><pre class="highlight plaintext tab-plaintext--sandbox"><code>GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 </code></pre>
@@ -731,7 +723,7 @@ talk about <strong>Waypoint</strong></p>
 <td>Trying to match shipment with a driver</td>
 </tr>
 <tr>
-<td><code>ONGOING</code></td>
+<td><code>ON_GOING</code></td>
 <td>Shipment is matched with a driver</td>
 </tr>
 <tr>
@@ -844,64 +836,6 @@ talk about <strong>Waypoint</strong></p>
 <td><code>&lt;LALAMOVE_ORDER_ID&gt;</code></td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
 <h1 id='available-countries'>Available countries</h1>
 <p>Lalamove API is currently open for the following countries and regions.</p>
 
@@ -911,35 +845,185 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <tr>
 <th>Countries and Regions</th>
 <th>ISO 3166-1 alpha-2</th>
+<th>locale key</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Thailand</td>
-<td>TH</td>
+<td>🇭🇰 Hong Kong</td>
+<td><code>HK</code></td>
+<td><code>en_HK</code>, <code>zh_HK</code></td>
 </tr>
 <tr>
-<td>Taiwan</td>
-<td>TW</td>
+<td>🇲🇾 Malaysia</td>
+<td><code>MY</code></td>
+<td><code>en_MY</code>, <code>ms_MY</code></td>
 </tr>
 <tr>
-<td>Hong Kong</td>
-<td>HK</td>
+<td>🇵🇭 Philippines</td>
+<td><code>PH</code></td>
+<td><code>en_PH</code></td>
 </tr>
 <tr>
-<td>Malaysia</td>
-<td>MY</td>
+<td>🇸🇬 Singapore</td>
+<td><code>SG</code></td>
+<td><code>en_SG</code></td>
 </tr>
 <tr>
-<td>Philippines</td>
-<td>PH</td>
+<td>🇹🇭 Thailand</td>
+<td><code>TH</code></td>
+<td><code>th_TH</code>, <code>en_TH</code></td>
 </tr>
 <tr>
-<td>Viet Nam</td>
-<td>VN</td>
+<td>🇹🇼 Taiwan</td>
+<td><code>TW</code></td>
+<td><code>zh_TW</code></td>
 </tr>
 <tr>
-<td>Singapore</td>
-<td>SG</td>
+<td>🇻🇳 Viet Nam</td>
+<td><code>VN</code></td>
+<td><code>en_VN</code>, <code>vi_VN</code></td>
+</tr>
+</tbody></table>
+<h2 id='available-countries-service-types'>Service types</h2>
+<p>lalalalal</p>
+<h2 id='available-countries-special-requests'>Special requests</h2>
+<p>i m special haha.</p>
+<h2 id='available-countries-phone-validations'>Phone validations</h2>
+<p>blah blah blah</p>
+<h1 id='errors'>Errors</h1>
+<p>The Lalamove API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Message</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>400</code> -- Bad Request</td>
+<td><code>ERR_MALFORMED_JSON_BODY</code></td>
+<td>Your request is invalid. Make sure the body is a valid JSON string.</td>
+</tr>
+<tr>
+<td><code>401</code> -- Unauthorized</td>
+<td></td>
+<td>Your API key is wrong. Make sure to follow <a href="#authentication">instructions in Authentication</a>.</td>
+</tr>
+<tr>
+<td><code>402</code> -- Payment Required</td>
+<td><code>ERR_INSUFFICIENT_CREDIT</code></td>
+<td>You have insufficient Credit.</td>
+</tr>
+<tr>
+<td><code>403</code> -- Forbidden</td>
+<td></td>
+<td>The Order&#39;s or Driver&#39;s details requested is not unauthorized.</td>
+</tr>
+<tr>
+<td><code>404</code> -- Not Found</td>
+<td></td>
+<td>The specified Order or Driver could not be found.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_CANCELLATION_FORBIDDEN</code></td>
+<td>Cancellation does not meet certain constraints.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_DELIVERY_MISMATCH</code></td>
+<td>Stops and Deliveries mismatch.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INSUFFICIENT_STOPS</code></td>
+<td>Not enough stops (Number of stops should be more than 1).</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_TOO_MANY_STOPS</code></td>
+<td>Reached maximum stops.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INVALID_COUNTRY</code></td>
+<td>Incorrect country.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INVALID_CURRENCY</code></td>
+<td>Invalid currency.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INVALID_LOCALE</code></td>
+<td>Invalid locale.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INVALID_PARAMS</code></td>
+<td>General validation error.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INVALID_PHONE_NUMBER</code></td>
+<td>Invalid phone number.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INVALID_SCHEDULE_TIME</code></td>
+<td>Invalid schedule time.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INVALID_SERVICE_TYPE</code></td>
+<td>Inputted service type is not yet supported.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INVALID_SPECIAL_REQUEST</code></td>
+<td>Inputted special requests are not yet supported.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_OUT_OF_SERVICE_AREA</code></td>
+<td>Out of service area.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_PRICE_MISMATCH</code></td>
+<td>Inputted price mismatched.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_REQUIRED_FIELD</code></td>
+<td>Missing required fields.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_REVERSE_GEOCODE_FAILURE</code></td>
+<td>Fail to reverse from address to location. (<strong>TODO: explain</strong>)</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INVALID_PAYMENT_METHOD</code></td>
+<td>Invalid payment method.</td>
+</tr>
+<tr>
+<td><code>409</code> -- Conflict</td>
+<td><code>ERR_INV ALID_FLEET_PRIORITY</code></td>
+<td>Invalid fleet priority.</td>
+</tr>
+<tr>
+<td><code>429</code> -- Too Many Requests</td>
+<td></td>
+<td>You&#39;re sending in too many requests.</td>
+</tr>
+<tr>
+<td><code>500</code> -- Internal Server Error</td>
+<td></td>
+<td>We had a problem with our server. Try again later.</td>
 </tr>
 </tbody></table>
 
