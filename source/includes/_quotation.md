@@ -41,15 +41,15 @@ Will return a with an object containing the fee amount and currency of based on 
 
 |                    |     |                  |                                                                                                                                  |
 | ------------------ | --- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `scheduleAt`       | ✅  | `string`         | Pick up time in **UTC** time zone. In **ISO RFC3339** format                                                                     |
-| `serviceType`      | ✅  | `string`         | `MOTORCYCLE`- **50 × 50 × 50 cm** or less <br>`MPV` - **115 × 115 × 80 cm** or less <br> `TRUCK`- **170 × 150 × 170 cm** or less |
-| `stops`            | ✅  | `Waypoint[]`     | Array of [`Waypoint`](#waypoint) (minimum 2, maximum 10)                                                                         |
-| `deliveries`       | ✅  | `DeliveryInfo[]` | Array of [`DeliveryInfo`](#deliveryinfo) like contact person, mobile phone number and remarks for each item                      |
-| `requesterContact` | ✅  | `Contact`        | Person of contact at _pick up point_ aka `stop[0]`, see [`Contact`](#get-a-quotation-contact)                                    |  |
-| `specialRequests`  |     | `string[]`       | blah blah blah                                                                                                                   |
-| `promoCode`        |     | `string`         | blah blah blah                                                                                                                   |
+| `scheduleAt`       |     | `string`         | Pick up time in **UTC** time zone. In **ISO RFC3339** format                                                                     |
+| `serviceType`      |     | `string`         | `MOTORCYCLE`- **50 × 50 × 50 cm** or less <br>`MPV` - **115 × 115 × 80 cm** or less <br> `TRUCK`- **170 × 150 × 170 cm** or less |
+| `stops`            |     | `Waypoint[]`     | Array of [`Waypoint`](#waypoint) (minimum 2, maximum 10)                                                                         |
+| `deliveries`       |     | `DeliveryInfo[]` | Array of [`DeliveryInfo`](#deliveryinfo) like contact person, mobile phone number and remarks for each item                      |
+| `requesterContact` |     | `Contact`        | Person of contact at _pick up point_ aka `stop[0]`, see [`Contact`](#get-a-quotation-contact)                                    |  |
+| `specialRequests`  | 🤷‍♀️  | `string[]`       | blah blah blah                                                                                                                   |
+| `promoCode`        | 🤷‍♀️  | `string`         | blah blah blah                                                                                                                   |
 
-✅ - _Required_
+🤷‍♀️ - _Optional_
 
 ## Waypoint
 
@@ -70,15 +70,13 @@ Will return a with an object containing the fee amount and currency of based on 
 
 hahblah blah
 
-|                                     |     |          |                               |
-| ----------------------------------- | --- | -------- | ----------------------------- |
-| `location.lat`                      | ✅  | `string` |                               |
-| `location.lng`                      | ✅  | `string` |                               |
-| `addresses[<locale>]`               | ✅  | `object` | `<locale>` format ISO blah    |
-| `addresses[<locale>].displayString` | ✅  | `string` | becareful here blah blah blah |
-| `addresses[<locale>].country`       | ✅  | `string` | ISO blah blah                 |
-
-✅ - _Required_
+|                                     |          |                               |
+| ----------------------------------- | -------- | ----------------------------- |
+| `location.lat`                      | `string` |                               |
+| `location.lng`                      | `string` |                               |
+| `addresses[<locale>]`               | `object` | `<locale>` format ISO blah    |
+| `addresses[<locale>].displayString` | `string` | becareful here blah blah blah |
+| `addresses[<locale>].country`       | `string` | ISO blah blah                 |
 
 ## DeliveryInfo
 
@@ -98,11 +96,11 @@ hahblah blah
 
 |             |     |           |                                                                                                                                                            |
 | ----------- | --- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `toStop`    | ✅  | `number`  | The index of waypoint in `stops` this Delivery Info associates with, has to be `>= 1`, since the first stop's Delivery Info is tided to `requesterContact` |
-| `toContact` | ✅  | `Contact` | See [`Contact`](#get-a-quotation-contact)                                                                                                                  |
-| `remarks`   |     | `string`  | Free form text the driver would see                                                                                                                        |
+| `toStop`    |     | `number`  | The index of waypoint in `stops` this Delivery Info associates with, has to be `>= 1`, since the first stop's Delivery Info is tided to `requesterContact` |
+| `toContact` |     | `Contact` | See [`Contact`](#get-a-quotation-contact)                                                                                                                  |
+| `remarks`   | 🤷‍♀️  | `string`  | Free form text the driver would see                                                                                                                        |
 
-✅ - _Required_
+🤷‍♀️ - _Optional_
 
 ## Contact
 
@@ -116,9 +114,7 @@ hahblah blah
 
 hahblah blah, talk about phone format etc.
 
-|         |     |          |     |
-| ------- | --- | -------- | --- |
-| `name`  | ✅  | `string` |     |
-| `phone` | ✅  | `string` |     |
-
-✅ - _Required_
+|         |          |     |
+| ------- | -------- | --- |
+| `name`  | `string` |     |
+| `phone` | `string` |     |

@@ -45,9 +45,9 @@ Use the fee received from `/quotations` Blah blah blah.
 
 |                             |     |           |                                                                    |
 | --------------------------- | --- | --------- | ------------------------------------------------------------------ |
-| `quotedTotalFee.amount`     | ✅  | `string`  | blah blah blah                                                     |
-| `quotedTotalFee.currency`   | ✅  | `string`  | adada                                                              |
-| `callerSideCustomerOrderId` |     | `string`  | adad, example usecase                                              |
-| `sms`                       |     | `boolean` | Send delivery updates SMS to **all** recipients. Default to `true` |
+| `quotedTotalFee.amount`     |     | `string`  | blah blah blah                                                     |
+| `quotedTotalFee.currency`   |     | `string`  | adada                                                              |
+| `callerSideCustomerOrderId` | 🤷‍♀️  | `string`  | adad, example usecase                                              |
+| `sms`                       | 🤷‍♀️  | `boolean` | Send delivery updates SMS to **all** recipients. Default to `true` |
 
-✅ - _Required_
+🤷‍♀️ - _Optional_
