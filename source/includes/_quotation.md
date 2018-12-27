@@ -43,8 +43,8 @@ Will return a with an object containing the fee amount and currency of based on 
 | ------------------ | --- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `scheduleAt`       |     | `string`         | Pick up time in **UTC** time zone. In **ISO RFC3339** format                                                                     |
 | `serviceType`      |     | `string`         | `MOTORCYCLE`- **50 × 50 × 50 cm** or less <br>`MPV` - **115 × 115 × 80 cm** or less <br> `TRUCK`- **170 × 150 × 170 cm** or less |
-| `stops`            |     | `Waypoint[]`     | Array of [`Waypoint`](#waypoint) (minimum 2, maximum 10)                                                                         |
-| `deliveries`       |     | `DeliveryInfo[]` | Array of [`DeliveryInfo`](#deliveryinfo) like contact person, mobile phone number and remarks for each item                      |
+| `stops`            |     | `Waypoint[]`     | Array of [`Waypoint`](#waypoint)s (minimum 2, maximum 10)                                                                        |
+| `deliveries`       |     | `DeliveryInfo[]` | Array of [`DeliveryInfo`](#deliveryinfo)s                                                                                        |
 | `requesterContact` |     | `Contact`        | Person of contact at _pick up point_ aka `stop[0]`, see [`Contact`](#get-a-quotation-contact)                                    |  |
 | `specialRequests`  | 🤷‍♀️  | `string[]`       | blah blah blah                                                                                                                   |
 | `promoCode`        | 🤷‍♀️  | `string`         | blah blah blah                                                                                                                   |
@@ -54,7 +54,6 @@ Will return a with an object containing the fee amount and currency of based on 
 ## Waypoint
 
 > **Waypoint**
-> talk about **Waypoint**
 
 ```js
 {
@@ -68,21 +67,20 @@ Will return a with an object containing the fee amount and currency of based on 
 }
 ```
 
-hahblah blah
+`LOCALE` is composed of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code and [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code as follow:
 
-|                                     |          |                               |
-| ----------------------------------- | -------- | ----------------------------- |
-| `location.lat`                      | `string` |                               |
-| `location.lng`                      | `string` |                               |
-| `addresses[<locale>]`               | `object` | `<locale>` format ISO blah    |
-| `addresses[<locale>].displayString` | `string` | becareful here blah blah blah |
-| `addresses[<locale>].country`       | `string` | ISO blah blah                 |
+`{ISO 639-1}_{ISO 3166-1 alpha-2}`.
+
+|                                     |          |                                                                        |
+| ----------------------------------- | -------- | ---------------------------------------------------------------------- |
+| `location.lat`                      | `string` |                                                                        |
+| `location.lng`                      | `string` |                                                                        |
+| `addresses[<LOCALE>].displayString` | `string` | becareful here blah blah blah                                          |
+| `addresses[<LOCALE>].country`       | `string` | [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). [See Available countries](#available-countries) |
 
 ## DeliveryInfo
 
 > **DeliveryInfo**
-
-> hahahaha **DeliveryInfo**
 
 ```js
 {
@@ -92,7 +90,7 @@ hahblah blah
 }
 ```
 
-hahblah blah
+Contact person, mobile phone number and remarks for each [Waypoint](#get-a-quotation-waypoint) excluding the pick up point.
 
 |             |     |           |                                                                                                                                                            |
 | ----------- | --- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |

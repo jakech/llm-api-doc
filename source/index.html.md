@@ -15,8 +15,8 @@ includes:
   - place-order
   - get-order
   - cancel-order
-  - errors
   - regions
+  - errors
 
 search: true
 ---
