@@ -1,7 +1,11 @@
 # Place an order
 
-```
+```plaintext--prod
 POST https://rest.lalamove.com/v2/orders
+```
+
+```plaintext--sandbox
+POST https://sandbox-rest.lalamove.com/v2/orders
 ```
 
 > Headers

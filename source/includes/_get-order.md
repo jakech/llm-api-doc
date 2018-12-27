@@ -36,17 +36,17 @@ Blah blah blah.
 | ---- | --------------------- |
 | `id` | `<LALAMOVE_ORDER_ID>` |
 
-**Order Status**
+**Order Status (need to confirm)**
 
-|             |                                                     |
-| ----------- | --------------------------------------------------- |
-| `ASSIGNING` | Trying to match shipment with a driver              |
-| `ONGOING`   | Shipment is matched with a driver                   |
-| `CANCELLED` | Shipment is cancelled before pick up                |
-| `REJECTED`  | Shipment was matched and later reverted             |
-| `PICKED_UP` | Shipment is picked up by the driver                 |
-| `COMPLETED` | Sucessfully delivered and transaction has concluded |
-| `EXPIRED`   | Order expired because a match could not be found    |
+|                    |                                                     |
+| ------------------ | --------------------------------------------------- |
+| `ASSIGNING_DRIVER` | Trying to match shipment with a driver              |
+| `ONGOING`          | Shipment is matched with a driver                   |
+| `CANCELLED`        | Shipment is cancelled before pick up                |
+| `REJECTED`         | Shipment was matched and later reverted             |
+| `PICKED_UP`        | Shipment is picked up by the driver                 |
+| `COMPLETED`        | Sucessfully delivered and transaction has concluded |
+| `EXPIRED`          | Order expired because a match could not be found    |
 
 ## Driver details
 
