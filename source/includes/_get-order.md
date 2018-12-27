@@ -36,7 +36,7 @@ Blah blah blah.
 |                    |                                                     |
 | ------------------ | --------------------------------------------------- |
 | `ASSIGNING_DRIVER` | Trying to match shipment with a driver              |
-| `ONGOING`          | Shipment is matched with a driver                   |
+| `ON_GOING`          | Shipment is matched with a driver                   |
 | `CANCELLED`        | Shipment is cancelled before pick up                |
 | `REJECTED`         | Shipment was matched and later reverted             |
 | `PICKED_UP`        | Shipment is picked up by the driver                 |
