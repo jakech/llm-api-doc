@@ -16,6 +16,7 @@ includes:
   - get-order
   - cancel-order
   - errors
+  - regions
 
 search: true
 ---

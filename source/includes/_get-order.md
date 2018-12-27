@@ -1,16 +1,11 @@
 # Get order details
 
-```
+```plaintext--prod
 GET https://rest.lalamove.com/v2/orders/{id}
 ```
 
-> Headers
-
-```yaml
-Authorization: hmac <TOKEN>
-Content-Type: application/json
-X-LLM-Country: <YOUR_COUNTRY>
-X-Request-ID: <NONCE>
+```plaintext--sandbox
+GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 ```
 
 > Responses: `200`
@@ -50,17 +45,12 @@ Blah blah blah.
 
 ## Driver details
 
-```
+```plaintext--prod
 GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
 ```
 
-> Headers
-
-```yaml
-Authorization: hmac <TOKEN>
-Content-Type: application/json
-X-LLM-Country: <YOUR_COUNTRY>
-X-Request-ID: <NONCE>
+```plaintext--sandbox
+GET https://sandbox-rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
 ```
 
 > Responses: `200`
@@ -85,17 +75,12 @@ Blah blah blah.
 
 ## Driver location
 
-```
+```plaintext--prod
 GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}/location
 ```
 
-> Headers
-
-```yaml
-Authorization: hmac <TOKEN>
-Content-Type: application/json
-X-LLM-Country: <YOUR_COUNTRY>
-X-Request-ID: <NONCE>
+```plaintext--sandbox
+GET https://sandbox-rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}/location
 ```
 
 > Responses: `200`

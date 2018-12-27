@@ -1,16 +1,11 @@
 # Get a quotation
 
-```
+```plaintext--prod
 POST https://rest.lalamove.com/v2/quotations
 ```
 
-> Headers
-
-```yaml
-Authorization: hmac <TOKEN>
-Content-Type: application/json
-X-LLM-Country: <YOUR_COUNTRY>
-X-Request-ID: <NONCE>
+```plaintext--sandbox
+POST https://sandbox-rest.lalamove.com/v2/quotations
 ```
 
 > Body
@@ -18,7 +13,7 @@ X-Request-ID: <NONCE>
 ```js
 {
   "scheduleAt": "2018-12-19T14:30:00.00Z",
-  "serviceType": "VAN",
+  "serviceType": "VAN", // TODO
   "stops": [<Waypoint>],
   "deliveries": [<DeliveryInfo>],
   "requesterContact": <Contact>,

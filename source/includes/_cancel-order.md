@@ -1,16 +1,11 @@
 # Cancel an order
 
-```
+```plaintext--prod
 PUT https://rest.lalamove.com/v2/orders/{id}/cancel
 ```
 
-> Headers
-
-```yaml
-Authorization: hmac <TOKEN>
-Content-Type: application/json
-X-LLM-Country: <YOUR_COUNTRY>
-X-Request-ID: <NONCE>
+```plaintext--sandbox
+PUT https://sandbox-rest.lalamove.com/v2/orders/{id}/cancel
 ```
 
 > Responses: `200`

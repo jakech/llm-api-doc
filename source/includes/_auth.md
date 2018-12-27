@@ -6,20 +6,25 @@ You will be provided an api `KEY`, and a `SECRET` for generating a [HMAC](https:
 
 ## Signature
 
-> JavaScript
+> Example in JavaScript
 
 ```js
 const SECRET = 'MCwCAQACBQDDym2lAgMBAAECBDHB';
 
-const time = new Date().getTime().toString(); // `1545880607433`
+const time = new Date().getTime().toString(); // => `1545880607433`
 
 const method = 'POST';
 const path = '/v2/quotations';
-const body = JSON.stringify({...}); // the whole body for '/v2/quotations'
+const body = JSON.stringify({...}); // => the whole body for '/v2/quotations'
 const rawSignature = `${time}\r\n${method}\r\n${path}\r\n\r\n${body}`;
 
-const signature = CryptoJS.HmacSHA256(rawSignature, SECRET);
+const SIGNATURE = CryptoJS.HmacSHA256(rawSignature, SECRET).toString();
+// => '5133946c6a0ba25932cc18fa3aa1b5c3dfa2c7f99de0f8599b28c2da88ed9d42'
 ```
+
+<aside class="warning">
+A unique <b>Signature Hash</b> has to be generated for <b>EVERY</b> API call at the time of making such call.
+</aside>
 
 `SIGNATURE = HmacSHA256(<TIMESTAMP>\r\n<HTTP_VERB>\r\n<PATH>\r\n\r\n<BODY>, <SECRET>)`
 
@@ -31,16 +36,37 @@ const signature = CryptoJS.HmacSHA256(rawSignature, SECRET);
 | `PATH`      | The _pathname_ of the specific API call including version. eg. `/v2/quotations` |
 | `BODY`      | The request body in _JSON string_                                               |
 
+Also see
+
+* [Examples of creating base64 hashes using HMAC SHA256 in different languages](https://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages)
+
 ## Headers
 
-> <aside class="notice">Every call <b>MUST</b> include the following headers</aside>
+> Example in JavaScript **(cont.)**
+
+```js
+const API_KEY = '914c9e52e6414d9494e299708d176a41'
+const TOKEN = `${API_KEY}:${time}:${SIGNATURE}`
+// => '914c9e52e6414d9494e299708d176a41:1545880607433:5133946c6a0ba25932cc18fa3aa1b5c3dfa2c7f99de0f8599b28c2da88ed9d42'
+```
+
+> <aside class="warning">Every call <b>MUST</b> include the following headers.</aside>
 
 ```yaml
 Authorization: hmac <TOKEN>
-Content-Type: application/json
 X-LLM-Country: <YOUR_COUNTRY>
-X-Request-ID: <NONCE> # TODO
+X-Request-ID: <NONCE>
 ```
+
+> Example
+
+```yaml
+Authorization: hmac 914c9e52e6414d9494e299708d176a41:1545880607433:5133946c6a0ba25932cc18fa3aa1b5c3dfa2c7f99de0f8599b28c2da88ed9d42
+X-LLM-Country: TH
+X-Request-ID: 211b9d85-a2cc-476f-8675-b61ec923cc27
+```
+
+### Authorization
 
 `TOKEN = <KEY>:<TIMESTAMP>:<SIGNATURE>`
 
@@ -48,4 +74,18 @@ X-Request-ID: <NONCE> # TODO
 | ----------- | -------------------------------------------------------------------------------- |
 | `KEY`       | Your API key                                                                     |
 | `TIMESTAMP` | **MUST** be identical to `TIMESTAMP` in [`SIGNATURE`](#authentication-signature) |
-| `SIGNATURE` | [As generated here](#authentication-signature)                                   |
+| `SIGNATURE` | As described in [Signature](#authentication-signature)                           |
+
+### X-LLM-Country
+
+The country the requested service is for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. [See Available countries](#available-countries)
+
+<aside class="notice">
+Currently, API keys are limited to a <b>single country/region</b>.
+</aside>
+
+<aside class="success"><a href="#sales">Contact us</a> if you would like to expand your operations to more countries and regions.</aside>
+
+### X-Request-ID
+
+Provide a [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) to be used as an unique Request ID. It helps us with preventing replay attacks.

@@ -8,15 +8,6 @@ POST https://rest.lalamove.com/v2/orders
 POST https://sandbox-rest.lalamove.com/v2/orders
 ```
 
-> Headers
-
-```yaml
-Authorization: hmac <TOKEN>
-Content-Type: application/json
-X-LLM-Country: <YOUR_COUNTRY>
-X-Request-ID: <NONCE> # TODO
-```
-
 > Body
 
 ```js
