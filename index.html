@@ -416,98 +416,98 @@ Currently, API keys are limited to a <b>single country/region</b>.
 <blockquote>
 <p>Body</p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span>
-  <span class="s2">"scheduleAt"</span><span class="p">:</span> <span class="s2">"2018-12-19T14:30:00.00Z"</span><span class="p">,</span>
-  <span class="s2">"serviceType"</span><span class="p">:</span> <span class="s2">"VAN"</span><span class="p">,</span> <span class="c1">// TODO</span>
-  <span class="s2">"stops"</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="nx">Waypoint</span><span class="o">&gt;</span><span class="p">],</span>
-  <span class="s2">"deliveries"</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="nx">DeliveryInfo</span><span class="o">&gt;</span><span class="p">],</span>
-  <span class="s2">"requesterContact"</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">Contact</span><span class="o">&gt;</span><span class="p">,</span>
-  <span class="s2">"specialRequests"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span> <span class="s2">"HELP_BUY"</span><span class="p">,</span> <span class="s2">"LALABAG"</span><span class="p">],</span> <span class="c1">// TODO</span>
-  <span class="s2">"promoCode"</span><span class="p">:</span> <span class="s2">"BLAH"</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"scheduleAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-19T14:30:00.00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"serviceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOTORCYCLE"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"stops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;Waypoint&gt;</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;DeliveryInfo&gt;</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"requesterContact"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Contact&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"specialRequests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HELP_BUY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LALABAG"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"promoCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLAH"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><strong>Responses</strong></p>
 
 <p><code>201</code>
 Quotation Created</p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"totalFee"</span><span class="p">:</span> <span class="s2">"67"</span><span class="p">,</span> <span class="s2">"totalFeeCurrency"</span><span class="p">:</span> <span class="s2">"SGD"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"totalFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67"</span><span class="p">,</span><span class="w"> </span><span class="s2">"totalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 Stops and Deliveries mismatch, <a href="#get-a-quotation-deliveryinfo">see DeliveryInfo</a></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_DELIVERY_MISMATCH"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_DELIVERY_MISMATCH"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 Not enough stops, number of stops should be between 2 and 15 <em>plz confirm</em></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INSUFFICIENT_STOPS"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INSUFFICIENT_STOPS"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 Reached maximum stops, Number of stops should be between 2 and 15 <em>plz confirm</em></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_TOO_MANY_STOPS"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_TOO_MANY_STOPS"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 Invalid payment method <em>when would this happen?</em></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_PAYMENT_METHOD"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_PAYMENT_METHOD"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 Invalid locale, refer to <a href="#get-a-quotation-waypoint">Waypoint</a></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_LOCALE"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_LOCALE"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 Invalid phone number, refer to <a href="#available-countries-phone-validations">Phone validations</a></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_PHONE_NUMBER"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_PHONE_NUMBER"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code> 
 <code>scheduleAt</code> datetime is in the past <em>do we have a limit on how far in the future?</em></p>
 
 <aside class="warning">Be reminded that <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_SCHEDULE_TIME"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_SCHEDULE_TIME"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 No such service type, make sure to stick to <a href="#service-types">Service types in your country/region</a></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_SERVICE_TYPE"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_SERVICE_TYPE"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 No such special request(s), make sure that special requests match with selected <a href="#service-types">Service types</a></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_SPECIAL_REQUEST"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_SPECIAL_REQUEST"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 Out of service area</p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_OUT_OF_SERVICE_AREA"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_OUT_OF_SERVICE_AREA"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 Fail to reverse from address to location, provide <code>lat</code> and <code>lng</code></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_REVERSE_GEOCODE_FAILURE"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_REVERSE_GEOCODE_FAILURE"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p><code>409</code>
 <em>no idea what this is</em></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_FLEET_PRIORITY"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_FLEET_PRIORITY"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>POST</code> <code>/v2/quotations</code></p>
 
 <p>Request a quotation.</p>
@@ -573,16 +573,16 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <blockquote>
 <p><strong>Waypoint</strong></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span>
-  <span class="s2">"location"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"lat"</span><span class="p">:</span> <span class="s2">"13.740167"</span><span class="p">,</span> <span class="s2">"lng"</span><span class="p">:</span> <span class="s2">"100.535237"</span> <span class="p">},</span>
-  <span class="s2">"addresses"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"th_TH"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">"displayString"</span><span class="p">:</span> <span class="s2">"Siam Pathum Wan, Bangkok"</span><span class="p">,</span>
-      <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"TH"</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13.740167"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.535237"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"th_TH"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"displayString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Siam Pathum Wan, Bangkok"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TH"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>LOCALE</code> is composed of <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> language code and <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> country code as follow:</p>
 
 <p><code>{ISO 639-1}_{ISO 3166-1 alpha-2}</code>.</p>
@@ -621,12 +621,12 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <blockquote>
 <p><strong>DeliveryInfo</strong></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span>
-  <span class="s2">"toStop"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"toContact"</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">Contact</span><span class="o">&gt;</span>
-  <span class="s2">"remarks"</span><span class="p">:</span> <span class="s2">"XXXXX"</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"toStop"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"toContact"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Contact&gt;</span><span class="w">
+  </span><span class="s2">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXX"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Contact person, mobile phone number and remarks for each <a href="#get-a-quotation-waypoint">Waypoint</a> excluding the pick up point.</p>
 
 <table><thead>
@@ -662,8 +662,8 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <blockquote>
 <p><strong>Contact</strong></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"mm"</span><span class="p">,</span> <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"9999999"</span> <span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mm"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9999999"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>hahblah blah, talk about phone format etc.</p>
 
 <table><thead>
@@ -693,9 +693,9 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <pre class="highlight javascript"><code><span class="p">{</span>
   <span class="s2">"quotedTotalFee"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"67"</span><span class="p">,</span>
-    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"SGD"</span>
+    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"THB"</span>
   <span class="p">},</span>
-  <span class="s2">"callerSideCustomerOrderId"</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">YOUR_UNIQUE_REF</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="s2">"callerSideCustomerOrderId"</span><span class="p">:</span> <span class="s2">"YOUR_UNIQUE_REF"</span><span class="p">,</span>
   <span class="s2">"sms"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="c1">// ... merge with body used for quotation</span>
 <span class="p">}</span>
@@ -705,18 +705,47 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <b>IMPORTANT:</b> Merge the above with the <code>body</code> that was used for <a href="#get-a-quotation">requesting quotation</a>.
 </aside>
 
-<p>Responses: <code>201</code></p>
+<p><strong>Responses</strong></p>
+
+<p><code>201</code>
+Order Created</p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span>
-  <span class="s2">"customerOrderId"</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">LALAMOVE_ORDER_ID</span><span class="o">&gt;</span><span class="p">,</span>
-  <span class="s2">"orderRef"</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">LALAMOVE_ORDER_REF</span><span class="o">&gt;</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"customerOrderId"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;LALAMOVE_ORDER_ID&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"orderRef"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;LALAMOVE_ORDER_REF&gt;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>402</code>
+You have insufficient credit. Please <a href="https://web.lalamove.com/">top up</a></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INSUFFICIENT_CREDIT"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>409</code>
+The currency you provided in <code>quotedTotalFee.currency</code> is not a valid currency</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_CURRENCY"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>409</code>
+The amount or currency you provided in <code>quotedTotalFee</code> doesn&#39;t match quotation</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_PRICE_MISMATCH"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>429</code>
+Too Many Requests</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I_DONT_KNOW"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>POST</code> <code>/v2/orders</code></p>
 
 <p>Use the fee received from <code>/quotations</code> Blah blah blah.</p>
 
-<aside class="notice">The amount and currency of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
+<p><code>YOUR_UNIQUE_REF</code> is used for associating your data with Lalamove&#39;s order. eg. your order id.</p>
+
+<aside class="notice">The <code>amount</code> and <code>currency</code> of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
 
 <p><strong>Body</strong></p>
 
