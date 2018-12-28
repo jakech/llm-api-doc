@@ -422,8 +422,7 @@ Currently, API keys are limited to a <b>single country/region</b>.
   </span><span class="s2">"stops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;Waypoint&gt;</span><span class="p">],</span><span class="w">
   </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;DeliveryInfo&gt;</span><span class="p">],</span><span class="w">
   </span><span class="s2">"requesterContact"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Contact&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"specialRequests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HELP_BUY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LALABAG"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"promoCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLAH"</span><span class="w">
+  </span><span class="s2">"specialRequests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"COD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HELP_BUY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LALABAG"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -471,8 +470,7 @@ Invalid phone number, refer to <a href="#available-countries-phone-validations">
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_PHONE_NUMBER"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p><code>409</code> 
-<code>scheduleAt</code> datetime is in the past <em>do we have a limit on how far in the future?</em></p>
+<p><code>409</code> &gt; <code>scheduleAt</code> datetime is in the past</p>
 
 <aside class="warning">Be reminded that <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
 </blockquote>
@@ -502,17 +500,36 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_REVERSE_GEOCODE_FAILURE"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<blockquote>
-<p><code>409</code>
-<em>no idea what this is</em></p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_FLEET_PRIORITY"</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></code></pre>
 <p><code>POST</code> <code>/v2/quotations</code></p>
 
 <p>Request a quotation.</p>
 
 <p>Will return a with an object containing the fee amount and currency of based on information provided.</p>
+
+<aside class="warning"><b>IMPORTANT:</b> <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+
+<script>
+  (function() {
+    window.now = moment()
+  })()
+</script>
+
+<table>
+  <thead>
+    <tr>
+      <th>Your local time</th>
+      <th>UTC time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><script>document.write(now.toISOString(true))</script></td>
+      <td><script>document.write(now.toISOString())</script></td>
+    </tr>
+  <tbody>
+</table>
 
 <p><strong>Body</strong></p>
 
@@ -559,12 +576,6 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <td>🤷‍♀️</td>
 <td><code>string[]</code></td>
 <td><a href="#service-types">See available special requests</a> in your country/region</td>
-</tr>
-<tr>
-<td><code>promoCode</code></td>
-<td>🤷‍♀️</td>
-<td><code>string</code></td>
-<td><strong>@pat plz help with usecase example</strong></td>
 </tr>
 </tbody></table>
 
@@ -779,7 +790,7 @@ Too Many Requests</p>
 <td><code>sms</code></td>
 <td>🤷‍♀️</td>
 <td><code>boolean</code></td>
-<td>Send delivery updates SMS to <strong>all</strong> recipients. Default to <code>true</code></td>
+<td>Send delivery updates SMS to <strong>ALL</strong> recipients. Default to <code>true</code></td>
 </tr>
 </tbody></table>
 
