@@ -799,17 +799,31 @@ Too Many Requests</p>
 </code></pre><pre class="highlight plaintext tab-plaintext--sandbox"><code>GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 </code></pre>
 <blockquote>
-<p>Responses: <code>200</code></p>
+<p><strong>Responses</strong></p>
+
+<p><code>200</code> <code>ASSIGNING_DRIVER</code></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span>
-  <span class="s2">"driverId"</span><span class="p">:</span> <span class="s2">"8799752"</span><span class="p">,</span>
-  <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"COMPLETED"</span>
-  <span class="s2">"price"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"253"</span><span class="p">,</span>
-    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"THB"</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASSIGNING_DRIVER"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>200</code> <code>COMPLETED</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8799752"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>GET</code> <code>/v2/orders/{id}</code></p>
 
 <p>Blah blah blah.</p>
@@ -933,13 +947,21 @@ Too Many Requests</p>
 </code></pre><pre class="highlight plaintext tab-plaintext--sandbox"><code>PUT https://sandbox-rest.lalamove.com/v2/orders/{id}/cancel
 </code></pre>
 <blockquote>
-<p>Responses: <code>200</code></p>
+<p><strong>Responses</strong></p>
+
+<p><code>200</code></p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>409</code>
+Cancellation does not meet certain constraints <strong>WHAT constraints? @Pat</strong></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_CANCELLATION_FORBIDDEN"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>PUT</code> <code>/v2/orders/{id}/cancel</code></p>
 
-<p>Cancellation, blah blah blah.</p>
+<p>Cancellation, blah blah blah. When am I not allow to cancel????? @Pat</p>
 
 <p><strong>URL Params</strong></p>
 
@@ -1036,63 +1058,39 @@ Too Many Requests</p>
 <table><thead>
 <tr>
 <th>Error Code</th>
-<th>Message</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>400</code> -- Bad Request</td>
-<td><code>ERR_MALFORMED_JSON_BODY</code></td>
 <td>Your request is invalid. Make sure the body is a valid JSON string.</td>
 </tr>
 <tr>
 <td><code>401</code> -- Unauthorized</td>
-<td></td>
 <td>Your API key is wrong. Make sure to follow <a href="#authentication">instructions in Authentication</a>.</td>
 </tr>
 <tr>
 <td><code>402</code> -- Payment Required</td>
-<td><code>ERR_INSUFFICIENT_CREDIT</code></td>
 <td>You have insufficient Credit.</td>
 </tr>
 <tr>
 <td><code>403</code> -- Forbidden</td>
-<td></td>
 <td>The Order&#39;s or Driver&#39;s details requested is not unauthorized.</td>
 </tr>
 <tr>
 <td><code>404</code> -- Not Found</td>
-<td></td>
 <td>The specified Order or Driver could not be found.</td>
 </tr>
 <tr>
 <td><code>409</code> -- Conflict</td>
-<td><code>ERR_CANCELLATION_FORBIDDEN</code></td>
-<td>Cancellation does not meet certain constraints.</td>
-</tr>
-<tr>
-<td><code>409</code> -- Conflict</td>
-<td><code>ERR_INVALID_COUNTRY</code></td>
-<td>Incorrect country.</td>
-</tr>
-<tr>
-<td><code>409</code> -- Conflict</td>
-<td><code>ERR_INVALID_PARAMS</code></td>
-<td>General validation error.</td>
-</tr>
-<tr>
-<td><code>409</code> -- Conflict</td>
-<td><code>ERR_REQUIRED_FIELD</code></td>
-<td>Missing required fields.</td>
+<td><code>ERR_INVALID_COUNTRY</code> -- Incorrect country.<br/><code>ERR_INVALID_PARAMS</code> --- General validation error.<br/><code>ERR_REQUIRED_FIELD</code> -- Missing required fields.</td>
 </tr>
 <tr>
 <td><code>429</code> -- Too Many Requests</td>
-<td></td>
 <td>You&#39;re sending in too many requests.</td>
 </tr>
 <tr>
 <td><code>500</code> -- Internal Server Error</td>
-<td></td>
 <td>We had a problem with our server. Try again later.</td>
 </tr>
 </tbody></table>
