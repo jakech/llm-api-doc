@@ -14,8 +14,9 @@ includes:
   - place-order
   - get-order
   - cancel-order
-  - regions
+  - services
   - errors
+  - regions
   - form
 
 search: true

@@ -14,14 +14,6 @@ Lalamove API is currently open for the following countries and regions.
 | 🇹🇼 Taiwan             | `TW`               | `zh_TW`          |
 | 🇻🇳 Viet Nam           | `VN`               | `en_VN`, `vi_VN` |
 
-## Service types
-
-lalalalal
-
-## Special requests
-
-i m special haha.
-
 ## Phone validations
 
 blah blah blah
