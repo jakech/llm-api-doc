@@ -265,26 +265,30 @@
             <a href="#cancel-an-order" class="toc-h1 toc-link" data-title="Cancel an order">Cancel an order</a>
           </li>
           <li>
-            <a href="#available-countries" class="toc-h1 toc-link" data-title="Available countries">Available countries</a>
+            <a href="#service-types" class="toc-h1 toc-link" data-title="Service types">Service types</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#available-countries-service-types" class="toc-h2 toc-link" data-title="Service types">Service types</a>
-                  </li>
-                  <li>
-                    <a href="#available-countries-special-requests" class="toc-h2 toc-link" data-title="Special requests">Special requests</a>
-                  </li>
-                  <li>
-                    <a href="#available-countries-phone-validations" class="toc-h2 toc-link" data-title="Phone validations">Phone validations</a>
+                    <a href="#service-types-thailand" class="toc-h2 toc-link" data-title="Thailand">Thailand</a>
                   </li>
               </ul>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
+          <li>
+            <a href="#available-countries" class="toc-h1 toc-link" data-title="Available countries">Available countries</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#available-countries-phone-validations" class="toc-h2 toc-link" data-title="Phone validations">Phone validations</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-access" class="toc-h1 toc-link" data-title="API access">API access</a>
+          </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='#api-access'>Sign Up for Developer Keys</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -423,12 +427,86 @@ Currently, API keys are limited to a <b>single country/region</b>.
 <span class="p">}</span>
 </code></pre>
 <blockquote>
-<p>Responses: <code>201</code></p>
+<p><strong>Responses</strong></p>
+
+<p><code>201</code>
+Quotation Created</p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="p">{</span>
-  <span class="s2">"totalFee"</span><span class="p">:</span> <span class="s2">"67"</span><span class="p">,</span>
-  <span class="s2">"totalFeeCurrency"</span><span class="p">:</span> <span class="s2">"SGD"</span>
-<span class="p">}</span>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"totalFee"</span><span class="p">:</span> <span class="s2">"67"</span><span class="p">,</span> <span class="s2">"totalFeeCurrency"</span><span class="p">:</span> <span class="s2">"SGD"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+Stops and Deliveries mismatch, <a href="#get-a-quotation-deliveryinfo">see DeliveryInfo</a></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_DELIVERY_MISMATCH"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+Not enough stops, number of stops should be between 2 and 15 <em>plz confirm</em></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INSUFFICIENT_STOPS"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+Reached maximum stops, Number of stops should be between 2 and 15 <em>plz confirm</em></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_TOO_MANY_STOPS"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+Invalid payment method <em>when would this happen?</em></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_PAYMENT_METHOD"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+Invalid locale, refer to <a href="#get-a-quotation-waypoint">Waypoint</a></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_LOCALE"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+Invalid phone number, refer to <a href="#available-countries-phone-validations">Phone validations</a></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_PHONE_NUMBER"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code> 
+<code>scheduleAt</code> datetime is in the past <em>do we have a limit on how far in the future?</em></p>
+
+<aside class="warning">Be reminded that <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_SCHEDULE_TIME"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+No such service type, make sure to stick to <a href="#service-types">Service types in your country/region</a></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_SERVICE_TYPE"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+No such special request(s), make sure that special requests match with selected <a href="#service-types">Service types</a></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_SPECIAL_REQUEST"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+Out of service area</p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_OUT_OF_SERVICE_AREA"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+Fail to reverse from address to location, provide <code>lat</code> and <code>lng</code></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_REVERSE_GEOCODE_FAILURE"</span> <span class="p">}</span>
+</code></pre>
+<blockquote>
+<p><code>409</code>
+<em>no idea what this is</em></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"ERR_INVALID_FLEET_PRIORITY"</span> <span class="p">}</span>
 </code></pre>
 <p><code>POST</code> <code>/v2/quotations</code></p>
 
@@ -450,13 +528,13 @@ Currently, API keys are limited to a <b>single country/region</b>.
 <td><code>scheduleAt</code></td>
 <td></td>
 <td><code>string</code></td>
-<td>Pick up time in <strong>UTC</strong> time zone. In <strong>ISO RFC3339</strong> format</td>
+<td>Pick up time in <strong>UTC</strong> timezone and <strong>ISO RFC3339</strong> format</td>
 </tr>
 <tr>
 <td><code>serviceType</code></td>
 <td></td>
 <td><code>string</code></td>
-<td><code>MOTORCYCLE</code>- <strong>50 × 50 × 50 cm</strong> or less <br><code>MPV</code> - <strong>115 × 115 × 80 cm</strong> or less <br> <code>TRUCK</code>- <strong>170 × 150 × 170 cm</strong> or less</td>
+<td>The type of vechicle. <a href="#service-types">See available service types</a> in your country/region</td>
 </tr>
 <tr>
 <td><code>stops</code></td>
@@ -480,13 +558,13 @@ Currently, API keys are limited to a <b>single country/region</b>.
 <td><code>specialRequests</code></td>
 <td>🤷‍♀️</td>
 <td><code>string[]</code></td>
-<td>blah blah blah</td>
+<td><a href="#service-types">See available special requests</a> in your country/region</td>
 </tr>
 <tr>
 <td><code>promoCode</code></td>
 <td>🤷‍♀️</td>
 <td><code>string</code></td>
-<td>blah blah blah</td>
+<td><strong>@pat plz help with usecase example</strong></td>
 </tr>
 </tbody></table>
 
@@ -508,6 +586,8 @@ Currently, API keys are limited to a <b>single country/region</b>.
 <p><code>LOCALE</code> is composed of <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> language code and <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> country code as follow:</p>
 
 <p><code>{ISO 639-1}_{ISO 3166-1 alpha-2}</code>.</p>
+
+<p><a href="#available-countries">See what locale keys are available in your country/region</a></p>
 
 <table><thead>
 <tr>
@@ -581,8 +661,6 @@ Currently, API keys are limited to a <b>single country/region</b>.
 <h2 id='get-a-quotation-contact'>Contact</h2>
 <blockquote>
 <p><strong>Contact</strong></p>
-
-<p>hahahaha <strong>Contact</strong></p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="p">{</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"mm"</span><span class="p">,</span> <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"9999999"</span> <span class="p">}</span>
 </code></pre>
@@ -598,12 +676,12 @@ Currently, API keys are limited to a <b>single country/region</b>.
 <tr>
 <td><code>name</code></td>
 <td><code>string</code></td>
-<td></td>
+<td>The name of the person of contact</td>
 </tr>
 <tr>
 <td><code>phone</code></td>
 <td><code>string</code></td>
-<td></td>
+<td>Must be a valid phone number. <a href="#available-countries-phone-validations">See how we validate</a> for each country/region</td>
 </tr>
 </tbody></table>
 <h1 id='place-an-order'>Place an order</h1><pre class="highlight plaintext tab-plaintext--prod"><code>POST https://rest.lalamove.com/v2/orders
@@ -836,60 +914,82 @@ Currently, API keys are limited to a <b>single country/region</b>.
 <td><code>&lt;LALAMOVE_ORDER_ID&gt;</code></td>
 </tr>
 </tbody></table>
-<h1 id='available-countries'>Available countries</h1>
-<p>Lalamove API is currently open for the following countries and regions.</p>
+<h1 id='service-types'>Service types</h1>
+<p>We have a range of vechicles to cater specific needs for each and every region.</p>
 
-<aside class="success"><a href="#sales">Contact us</a> if you would like to expand your operations to more countries and regions.</aside>
-
+<ul>
+<li>talk about how profession and locale savvy our locale Drivers are and why you should use us.</li>
+</ul>
+<h2 id='service-types-thailand'>Thailand</h2>
 <table><thead>
 <tr>
-<th>Countries and Regions</th>
-<th>ISO 3166-1 alpha-2</th>
-<th>locale key</th>
+<th>Key</th>
+<th>Description</th>
+<th>dimensions limit (cm)</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>🇭🇰 Hong Kong</td>
-<td><code>HK</code></td>
-<td><code>en_HK</code>, <code>zh_HK</code></td>
+<td><code>MOTORCYCLE</code></td>
+<td>Motorcycle</td>
+<td>50 × 50 × 50</td>
 </tr>
 <tr>
-<td>🇲🇾 Malaysia</td>
-<td><code>MY</code></td>
-<td><code>en_MY</code>, <code>ms_MY</code></td>
+<td><code>MPV</code></td>
+<td>Hatchback</td>
+<td>115 × 115 × 80</td>
 </tr>
 <tr>
-<td>🇵🇭 Philippines</td>
-<td><code>PH</code></td>
-<td><code>en_PH</code></td>
-</tr>
-<tr>
-<td>🇸🇬 Singapore</td>
-<td><code>SG</code></td>
-<td><code>en_SG</code></td>
-</tr>
-<tr>
-<td>🇹🇭 Thailand</td>
-<td><code>TH</code></td>
-<td><code>th_TH</code>, <code>en_TH</code></td>
-</tr>
-<tr>
-<td>🇹🇼 Taiwan</td>
-<td><code>TW</code></td>
-<td><code>zh_TW</code></td>
-</tr>
-<tr>
-<td>🇻🇳 Viet Nam</td>
-<td><code>VN</code></td>
-<td><code>en_VN</code>, <code>vi_VN</code></td>
+<td><code>TRUCK330</code></td>
+<td>Pick Up Truck</td>
+<td>170 × 150 × 170</td>
 </tr>
 </tbody></table>
-<h2 id='available-countries-service-types'>Service types</h2>
-<p>lalalalal</p>
-<h2 id='available-countries-special-requests'>Special requests</h2>
-<p>i m special haha.</p>
-<h2 id='available-countries-phone-validations'>Phone validations</h2>
-<p>blah blah blah</p>
+<h3 id='service-types-thailand-special-requests'>Special requests</h3>
+<table><thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th><code>MOTORCYCLE</code></th>
+<th><code>MPV</code></th>
+<th><code>TRUCK330</code></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>COD</code></td>
+<td>Cash on delivery</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>HELP_BUY</code></td>
+<td>Purchase Service (THB 1 - 1,000)</td>
+<td>✅</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>LALABAG</code></td>
+<td>Food Delivery Box</td>
+<td>✅</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ROUNDTRIP</code></td>
+<td></td>
+<td>✅</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ROUNDTRIP2</code></td>
+<td></td>
+<td></td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <p>The Lalamove API uses the following error codes:</p>
 
@@ -1026,6 +1126,69 @@ Currently, API keys are limited to a <b>single country/region</b>.
 <td>We had a problem with our server. Try again later.</td>
 </tr>
 </tbody></table>
+<h1 id='available-countries'>Available countries</h1>
+<p>Lalamove API is currently open for the following countries and regions.</p>
+
+<aside class="success"><a href="#sales">Contact us</a> if you would like to expand your operations to more countries and regions.</aside>
+
+<table><thead>
+<tr>
+<th>Countries and Regions</th>
+<th>ISO 3166-1 alpha-2</th>
+<th>locale key</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>🇭🇰 Hong Kong</td>
+<td><code>HK</code></td>
+<td><code>en_HK</code>, <code>zh_HK</code></td>
+</tr>
+<tr>
+<td>🇲🇾 Malaysia</td>
+<td><code>MY</code></td>
+<td><code>en_MY</code>, <code>ms_MY</code></td>
+</tr>
+<tr>
+<td>🇵🇭 Philippines</td>
+<td><code>PH</code></td>
+<td><code>en_PH</code></td>
+</tr>
+<tr>
+<td>🇸🇬 Singapore</td>
+<td><code>SG</code></td>
+<td><code>en_SG</code></td>
+</tr>
+<tr>
+<td>🇹🇭 Thailand</td>
+<td><code>TH</code></td>
+<td><code>th_TH</code>, <code>en_TH</code></td>
+</tr>
+<tr>
+<td>🇹🇼 Taiwan</td>
+<td><code>TW</code></td>
+<td><code>zh_TW</code></td>
+</tr>
+<tr>
+<td>🇻🇳 Viet Nam</td>
+<td><code>VN</code></td>
+<td><code>en_VN</code>, <code>vi_VN</code></td>
+</tr>
+</tbody></table>
+<h2 id='available-countries-phone-validations'>Phone validations</h2>
+<p>blah blah blah</p>
+<h1 id='api-access'>API access</h1>
+<p>
+<!--[if lte IE 8]>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+<![endif]-->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+<script>
+  hbspt.forms.create({
+  portalId: "3342377",
+  formId: "f5539ade-eb47-4f7e-b3d5-4262a7d2d3c5"
+});
+</script>
+</p>
 
       </div>
       <div class="dark-box">
