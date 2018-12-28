@@ -8,18 +8,34 @@ GET https://rest.lalamove.com/v2/orders/{id}
 GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 ```
 
-> Responses: `200`
+> **Responses**
 
-```js
+> `200` `ASSIGNING_DRIVER`
+
+```json
 {
-  "driverId": "8799752",
-  "status": "COMPLETED"
+  "driverId": "",
+  "status": "ASSIGNING_DRIVER",
   "price": {
-    "amount": "253",
+    "amount": "108000",
     "currency": "THB"
   }
 }
 ```
+
+> `200` `COMPLETED`
+
+```json
+{
+  "driverId": "8799752",
+  "status": "COMPLETED"
+  "price": {
+    "amount": "108000",
+    "currency": "THB"
+  }
+}
+```
+
 
 `GET` `/v2/orders/{id}`
 
@@ -47,7 +63,7 @@ Blah blah blah.
 
 ```plaintext--prod
 GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
-```
+````
 
 ```plaintext--sandbox
 GET https://sandbox-rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
