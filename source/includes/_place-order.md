@@ -81,6 +81,6 @@ Use the fee received from `/quotations` Blah blah blah.
 | `quotedTotalFee.amount`     |     | `string`  | blah blah blah                                                     |
 | `quotedTotalFee.currency`   |     | `string`  | adada                                                              |
 | `callerSideCustomerOrderId` | 🤷‍♀️  | `string`  | adad, example usecase                                              |
-| `sms`                       | 🤷‍♀️  | `boolean` | Send delivery updates SMS to **all** recipients. Default to `true` |
+| `sms`                       | 🤷‍♀️  | `boolean` | Send delivery updates SMS to **ALL** recipients. Default to `true` |
 
 🤷‍♀️ - _Optional_

@@ -17,8 +17,7 @@ POST https://sandbox-rest.lalamove.com/v2/quotations
   "stops": [<Waypoint>],
   "deliveries": [<DeliveryInfo>],
   "requesterContact": <Contact>,
-  "specialRequests": ["COD", "HELP_BUY", "LALABAG"],
-  "promoCode": "BLAH"
+  "specialRequests": ["COD", "HELP_BUY", "LALABAG"]
 }
 ```
 
@@ -73,8 +72,7 @@ POST https://sandbox-rest.lalamove.com/v2/quotations
 { "message": "ERR_INVALID_PHONE_NUMBER" }
 ```
 
-> `409` 
-> `scheduleAt` datetime is in the past _do we have a limit on how far in the future?_
+> `409` > `scheduleAt` datetime is in the past
 
 > <aside class="warning">Be reminded that <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
 
@@ -110,18 +108,36 @@ POST https://sandbox-rest.lalamove.com/v2/quotations
 { "message": "ERR_REVERSE_GEOCODE_FAILURE" }
 ```
 
-> `409`
-> _no idea what this is_
-
-```json
-{ "message": "ERR_INVALID_FLEET_PRIORITY" }
-```
-
 `POST` `/v2/quotations`
 
 Request a quotation.
 
 Will return a with an object containing the fee amount and currency of based on information provided.
+
+<aside class="warning"><b>IMPORTANT:</b> <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+
+<script>
+  (function() {
+    window.now = moment()
+  })()
+</script>
+
+<table>
+  <thead>
+    <tr>
+      <th>Your local time</th>
+      <th>UTC time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><script>document.write(now.toISOString(true))</script></td>
+      <td><script>document.write(now.toISOString())</script></td>
+    </tr>
+  <tbody>
+</table>
 
 **Body**
 
@@ -133,7 +149,6 @@ Will return a with an object containing the fee amount and currency of based on 
 | `deliveries`       |     | `DeliveryInfo[]` | Array of [`DeliveryInfo`](#deliveryinfo)s                                                     |
 | `requesterContact` |     | `Contact`        | Person of contact at _pick up point_ aka `stop[0]`, see [`Contact`](#get-a-quotation-contact) |  |
 | `specialRequests`  | 🤷‍♀️  | `string[]`       | [See available special requests](#service-types) in your country/region                       |
-| `promoCode`        | 🤷‍♀️  | `string`         | **@pat plz help with usecase example**                                                        |
 
 🤷‍♀️ - _Optional_
 
