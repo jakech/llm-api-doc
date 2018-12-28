@@ -10,14 +10,14 @@ POST https://sandbox-rest.lalamove.com/v2/quotations
 
 > Body
 
-```js
+```json
 {
   "scheduleAt": "2018-12-19T14:30:00.00Z",
-  "serviceType": "VAN", // TODO
+  "serviceType": "MOTORCYCLE",
   "stops": [<Waypoint>],
   "deliveries": [<DeliveryInfo>],
   "requesterContact": <Contact>,
-  "specialRequests": ["COD", "HELP_BUY", "LALABAG"], // TODO
+  "specialRequests": ["COD", "HELP_BUY", "LALABAG"],
   "promoCode": "BLAH"
 }
 ```
@@ -27,49 +27,49 @@ POST https://sandbox-rest.lalamove.com/v2/quotations
 > `201`
 > Quotation Created
 
-```js
-{ "totalFee": "67", "totalFeeCurrency": "SGD" }
+```json
+{ "totalFee": "67", "totalFeeCurrency": "THB" }
 ```
 
 > `409`
 > Stops and Deliveries mismatch, [see DeliveryInfo](#get-a-quotation-deliveryinfo)
 
-```js
+```json
 { "message": "ERR_DELIVERY_MISMATCH" }
 ```
 
 > `409`
 > Not enough stops, number of stops should be between 2 and 15 _plz confirm_
 
-```js
+```json
 { "message": "ERR_INSUFFICIENT_STOPS" }
 ```
 
 > `409`
 > Reached maximum stops, Number of stops should be between 2 and 15 _plz confirm_
 
-```js
+```json
 { "message": "ERR_TOO_MANY_STOPS" }
 ```
 
 > `409`
 > Invalid payment method _when would this happen?_
 
-```js
+```json
 { "message": "ERR_INVALID_PAYMENT_METHOD" }
 ```
 
 > `409`
 > Invalid locale, refer to [Waypoint](#get-a-quotation-waypoint)
 
-```js
+```json
 { "message": "ERR_INVALID_LOCALE" }
 ```
 
 > `409`
 > Invalid phone number, refer to [Phone validations](#available-countries-phone-validations)
 
-```js
+```json
 { "message": "ERR_INVALID_PHONE_NUMBER" }
 ```
 
@@ -78,42 +78,42 @@ POST https://sandbox-rest.lalamove.com/v2/quotations
 
 > <aside class="warning">Be reminded that <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
 
-```js
+```json
 { "message": "ERR_INVALID_SCHEDULE_TIME" }
 ```
 
 > `409`
 > No such service type, make sure to stick to [Service types in your country/region](#service-types)
 
-```js
+```json
 { "message": "ERR_INVALID_SERVICE_TYPE" }
 ```
 
 > `409`
 > No such special request(s), make sure that special requests match with selected [Service types](#service-types)
 
-```js
+```json
 { "message": "ERR_INVALID_SPECIAL_REQUEST" }
 ```
 
 > `409`
 > Out of service area
 
-```js
+```json
 { "message": "ERR_OUT_OF_SERVICE_AREA" }
 ```
 
 > `409`
 > Fail to reverse from address to location, provide `lat` and `lng`
 
-```js
+```json
 { "message": "ERR_REVERSE_GEOCODE_FAILURE" }
 ```
 
 > `409`
 > _no idea what this is_
 
-```js
+```json
 { "message": "ERR_INVALID_FLEET_PRIORITY" }
 ```
 
@@ -141,7 +141,7 @@ Will return a with an object containing the fee amount and currency of based on 
 
 > **Waypoint**
 
-```js
+```json
 {
   "location": { "lat": "13.740167", "lng": "100.535237" },
   "addresses": {
@@ -170,7 +170,7 @@ Will return a with an object containing the fee amount and currency of based on 
 
 > **DeliveryInfo**
 
-```js
+```json
 {
   "toStop": 1,
   "toContact": <Contact>
@@ -192,7 +192,7 @@ Contact person, mobile phone number and remarks for each [Waypoint](#get-a-quota
 
 > **Contact**
 
-```js
+```json
 { "name": "mm", "phone": "9999999" }
 ```
 
