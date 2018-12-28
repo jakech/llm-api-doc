@@ -2,8 +2,7 @@
 title: Lalamove API Reference
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='#api-access'>Sign Up for Developer Keys</a>
 
 language_tabs:
   - plaintext--sandbox: Sandbox
@@ -17,6 +16,7 @@ includes:
   - cancel-order
   - regions
   - errors
+  - form
 
 search: true
 ---
