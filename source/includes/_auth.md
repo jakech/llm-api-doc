@@ -10,13 +10,14 @@ You will be provided an api `KEY`, and a `SECRET` for generating a [HMAC](https:
 
 ```js
 const SECRET = 'MCwCAQACBQDDym2lAgMBAAECBDHB';
-
 const time = new Date().getTime().toString(); // => `1545880607433`
 
 const method = 'POST';
 const path = '/v2/quotations';
 const body = JSON.stringify({...}); // => the whole body for '/v2/quotations'
+
 const rawSignature = `${time}\r\n${method}\r\n${path}\r\n\r\n${body}`;
+// => '1546222219293\r\nPOST\r\n/v2/quotations\r\n\r\n{\n \"scheduleAt\": \"2018-12-31T14:30:00.00Z\",\n \"serviceType\": \"MOTORCYCLE\",\n \"requesterContact\": { \"name\": \"Peter Pan\", \"phone\": \"232\" },\n \"stops\": [\n {\n \"location\": { \"lat\": \"-6.255431000000001\", \"lng\": \"106.60114290000001\" },\n \"addresses\": {\n \"en_ID\": {\n \"displayString\":\n \"Jl. Perum Dasana Indah No.SD 3/ 17-18, RT.3/RW.1, Bojong Nangka, Klp. Dua, Tangerang, Banten 15810, Indonesia\",\n \"country\": \"ID\"\n }\n }\n },\n {\n \"location\": { \"lat\": \"-6.404722800000001\", \"lng\": \"106.81902130000003\" },\n \"addresses\": {\n \"en_ID\": {\n \"displayString\": \"Jl. Kartini, Ruko No. 1E, Depok, Pancoran MAS, Kota Depok, Jawa Barat 16431, Indonesia\",\n \"country\": \"ID\"\n }\n }\n }\n ],\n \"deliveries\": [\n {\n \"toStop\": 1,\n \"toContact\": {\n \"name\": \"mm\",\n \"phone\": \"9999999\"\n }\n }\n ]\n}\n'
 
 const SIGNATURE = CryptoJS.HmacSHA256(rawSignature, SECRET).toString();
 // => '5133946c6a0ba25932cc18fa3aa1b5c3dfa2c7f99de0f8599b28c2da88ed9d42'

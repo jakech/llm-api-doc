@@ -62,25 +62,23 @@ POST https://sandbox-rest.lalamove.com/v2/orders
 > `429`
 > Too Many Requests
 
-```json
-{ "message": "I_DONT_KNOW" }
+```js
+// no body
 ```
 
 `POST` `/v2/orders`
 
-Use the fee received from `/quotations` Blah blah blah.
-
-`YOUR_UNIQUE_REF` is used for associating your data with Lalamove's order. eg. your order id.
+Provide the `totalFee` and `totalFeeCurrency` received from `/quotations` as `quotedTotalFee.amount` and `quotedTotalFee.currency` merged with the exact same body used for `/quotations`.
 
 <aside class="notice">The <code>amount</code> and <code>currency</code> of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
 
 **Body**
 
-|                             |     |           |                                                                    |
-| --------------------------- | --- | --------- | ------------------------------------------------------------------ |
-| `quotedTotalFee.amount`     |     | `string`  | blah blah blah                                                     |
-| `quotedTotalFee.currency`   |     | `string`  | adada                                                              |
-| `callerSideCustomerOrderId` | 🤷‍♀️  | `string`  | adad, example usecase                                              |
-| `sms`                       | 🤷‍♀️  | `boolean` | Send delivery updates SMS to **ALL** recipients. Default to `true` |
+|                             |     |           |                                                                          |
+| --------------------------- | --- | --------- | ------------------------------------------------------------------------ |
+| `quotedTotalFee.amount`     |     | `string`  | `totalFee` from `/quotations`                                            |
+| `quotedTotalFee.currency`   |     | `string`  | `totalFeeCurrency` from `/quotations`                                    |
+| `callerSideCustomerOrderId` | 🤷‍♀️  | `string`  | Used for associating your data with Lalamove's order. eg. your order id. |
+| `sms`                       | 🤷‍♀️  | `boolean` | Send delivery updates SMS to **ALL** recipients. Default to `true`       |
 
 🤷‍♀️ - _Optional_

@@ -38,14 +38,14 @@ POST https://sandbox-rest.lalamove.com/v2/quotations
 ```
 
 > `409`
-> Not enough stops, number of stops should be between 2 and 15 _plz confirm_
+> Not enough stops, number of stops should be between 2 and 10
 
 ```json
 { "message": "ERR_INSUFFICIENT_STOPS" }
 ```
 
 > `409`
-> Reached maximum stops, Number of stops should be between 2 and 15 _plz confirm_
+> Reached maximum stops, Number of stops should be between 2 and 10
 
 ```json
 { "message": "ERR_TOO_MANY_STOPS" }
@@ -72,7 +72,7 @@ POST https://sandbox-rest.lalamove.com/v2/quotations
 { "message": "ERR_INVALID_PHONE_NUMBER" }
 ```
 
-> `409` > `scheduleAt` datetime is in the past
+> `409` `scheduleAt` datetime is in the past
 
 > <aside class="warning">Be reminded that <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
 
@@ -139,16 +139,22 @@ Will return a with an object containing the fee amount and currency of based on 
   <tbody>
 </table>
 
+* [**ISO 8601**](https://en.wikipedia.org/wiki/ISO_8601) format
+
+<aside class="warning">
+The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> tided to <code>requesterContact</code>.
+</aside>
+
 **Body**
 
-|                    |     |                  |                                                                                               |
-| ------------------ | --- | ---------------- | --------------------------------------------------------------------------------------------- |
-| `scheduleAt`       |     | `string`         | Pick up time in **UTC** timezone and **ISO RFC3339** format                                   |
-| `serviceType`      |     | `string`         | The type of vechicle. [See available service types](#service-types) in your country/region    |
-| `stops`            |     | `Waypoint[]`     | Array of [`Waypoint`](#waypoint)s (minimum 2, maximum 10)                                     |
-| `deliveries`       |     | `DeliveryInfo[]` | Array of [`DeliveryInfo`](#deliveryinfo)s                                                     |
-| `requesterContact` |     | `Contact`        | Person of contact at _pick up point_ aka `stop[0]`, see [`Contact`](#get-a-quotation-contact) |  |
-| `specialRequests`  | 🤷‍♀️  | `string[]`       | [See available special requests](#service-types) in your country/region                       |
+|                    |     |                  |                                                                                                    |
+| ------------------ | --- | ---------------- | -------------------------------------------------------------------------------------------------- |
+| `scheduleAt`       |     | `string`         | Pick up time in **UTC** timezone and [**ISO 8601**](https://en.wikipedia.org/wiki/ISO_8601) format |
+| `serviceType`      |     | `string`         | The type of vechicle. [See available service types](#service-types) in your country/region         |
+| `stops`            |     | `Waypoint[]`     | Array of [`Waypoint`](#waypoint)s (minimum 2, maximum 10)                                          |
+| `deliveries`       |     | `DeliveryInfo[]` | Array of [`DeliveryInfo`](#deliveryinfo)s                                                          |
+| `requesterContact` |     | `Contact`        | Person of contact at _pick up point_ aka `stop[0]`, see [`Contact`](#get-a-quotation-contact)      |  |
+| `specialRequests`  | 🤷‍♀️  | `string[]`       | [See available special requests](#service-types) in your country/region                            |
 
 🤷‍♀️ - _Optional_
 
@@ -161,7 +167,7 @@ Will return a with an object containing the fee amount and currency of based on 
   "location": { "lat": "13.740167", "lng": "100.535237" },
   "addresses": {
     "th_TH": {
-      "displayString": "Siam Pathum Wan, Bangkok",
+      "displayString": "444 ถนน พญาไท แขวง วังใหม่ เขต ปทุมวัน กรุงเทพมหานคร 10330 ประเทศไทย",
       "country": "TH"
     }
   }
@@ -174,12 +180,12 @@ Will return a with an object containing the fee amount and currency of based on 
 
 [See what locale keys are available in your country/region](#available-countries)
 
-|                                     |          |                                                                                                                         |
-| ----------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `location.lat`                      | `string` |                                                                                                                         |
-| `location.lng`                      | `string` |                                                                                                                         |
-| `addresses[<LOCALE>].displayString` | `string` | becareful here blah blah blah                                                                                           |
-| `addresses[<LOCALE>].country`       | `string` | [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). [See Available countries](#available-countries) |
+|                                     |          |                                                                                                                           |
+| ----------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `location.lat`                      | `string` | Latitude                                                                                                                  |
+| `location.lng`                      | `string` | Longitude                                                                                                                 |
+| `addresses[<LOCALE>].displayString` | `string` | Street address in plain text. Use `remarks` in [DeliveryInfo](#get-a-quotation-deliveryinfo) for building, floor and flat (**Need to check usage**) |
+| `addresses[<LOCALE>].country`       | `string` | [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). [See Available countries](#available-countries)   |
 
 ## DeliveryInfo
 
@@ -189,7 +195,7 @@ Will return a with an object containing the fee amount and currency of based on 
 {
   "toStop": 1,
   "toContact": <Contact>
-  "remarks": "XXXXX"
+  "remarks": "บทที่ 34 ชั้น 4 อาคารเอบีซี"
 }
 ```
 
@@ -197,9 +203,9 @@ Contact person, mobile phone number and remarks for each [Waypoint](#get-a-quota
 
 |             |     |           |                                                                                                                                                            |
 | ----------- | --- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `toStop`    |     | `number`  | The index of waypoint in `stops` this Delivery Info associates with, has to be `>= 1`, since the first stop's Delivery Info is tided to `requesterContact` |
+| `toStop`    |     | `number`  | The index of waypoint in `stops` this information associates with, has to be `>= 1`, since the first stop's Delivery Info is tided to `requesterContact` |
 | `toContact` |     | `Contact` | See [`Contact`](#get-a-quotation-contact)                                                                                                                  |
-| `remarks`   | 🤷‍♀️  | `string`  | Free form text the driver would see                                                                                                                        |
+| `remarks`   | 🤷‍♀️  | `string`  | Additional info about the delivery. eg. building, floor and flat                                                                                           |
 
 🤷‍♀️ - _Optional_
 
@@ -208,10 +214,8 @@ Contact person, mobile phone number and remarks for each [Waypoint](#get-a-quota
 > **Contact**
 
 ```json
-{ "name": "mm", "phone": "9999999" }
+{ "name": "Donald Trump", "phone": "+668912121212" }
 ```
-
-hahblah blah, talk about phone format etc.
 
 |         |          |                                                                                                                     |
 | ------- | -------- | ------------------------------------------------------------------------------------------------------------------- |

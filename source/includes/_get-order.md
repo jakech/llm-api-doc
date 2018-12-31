@@ -36,10 +36,20 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 }
 ```
 
+> `200` `EXPIRED`
+
+```json
+{
+  "driverId": "",
+  "status": "EXPIRED",
+  "price": {
+    "amount": "108000",
+    "currency": "THB"
+  }
+}
+```
 
 `GET` `/v2/orders/{id}`
-
-Blah blah blah.
 
 **URL Params**
 
@@ -52,18 +62,20 @@ Blah blah blah.
 |                    |                                                     |
 | ------------------ | --------------------------------------------------- |
 | `ASSIGNING_DRIVER` | Trying to match shipment with a driver              |
-| `ON_GOING`          | Shipment is matched with a driver                   |
+| `ON_GOING`         | Shipment is matched with a driver                   |
 | `CANCELLED`        | Shipment is cancelled before pick up                |
 | `REJECTED`         | Shipment was matched and later reverted             |
 | `PICKED_UP`        | Shipment is picked up by the driver                 |
 | `COMPLETED`        | Sucessfully delivered and transaction has concluded |
 | `EXPIRED`          | Order expired because a match could not be found    |
 
+![status](images/status-flow.svg)
+
 ## Driver details
 
 ```plaintext--prod
 GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
-````
+```
 
 ```plaintext--sandbox
 GET https://sandbox-rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
