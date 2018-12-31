@@ -307,13 +307,14 @@
 <p>Example in JavaScript</p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">SECRET</span> <span class="o">=</span> <span class="s1">'MCwCAQACBQDDym2lAgMBAAECBDHB'</span><span class="p">;</span>
-
 <span class="kr">const</span> <span class="nx">time</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">().</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// =&gt; `1545880607433`</span>
 
 <span class="kr">const</span> <span class="nx">method</span> <span class="o">=</span> <span class="s1">'POST'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">'/v2/quotations'</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({...});</span> <span class="c1">// =&gt; the whole body for '/v2/quotations'</span>
+
 <span class="kr">const</span> <span class="nx">rawSignature</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">time</span><span class="p">}</span><span class="s2">\r\n</span><span class="p">${</span><span class="nx">method</span><span class="p">}</span><span class="s2">\r\n</span><span class="p">${</span><span class="nx">path</span><span class="p">}</span><span class="s2">\r\n\r\n</span><span class="p">${</span><span class="nx">body</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+<span class="c1">// =&gt; '1546222219293\r\nPOST\r\n/v2/quotations\r\n\r\n{\n \"scheduleAt\": \"2018-12-31T14:30:00.00Z\",\n \"serviceType\": \"MOTORCYCLE\",\n \"requesterContact\": { \"name\": \"Peter Pan\", \"phone\": \"232\" },\n \"stops\": [\n {\n \"location\": { \"lat\": \"-6.255431000000001\", \"lng\": \"106.60114290000001\" },\n \"addresses\": {\n \"en_ID\": {\n \"displayString\":\n \"Jl. Perum Dasana Indah No.SD 3/ 17-18, RT.3/RW.1, Bojong Nangka, Klp. Dua, Tangerang, Banten 15810, Indonesia\",\n \"country\": \"ID\"\n }\n }\n },\n {\n \"location\": { \"lat\": \"-6.404722800000001\", \"lng\": \"106.81902130000003\" },\n \"addresses\": {\n \"en_ID\": {\n \"displayString\": \"Jl. Kartini, Ruko No. 1E, Depok, Pancoran MAS, Kota Depok, Jawa Barat 16431, Indonesia\",\n \"country\": \"ID\"\n }\n }\n }\n ],\n \"deliveries\": [\n {\n \"toStop\": 1,\n \"toContact\": {\n \"name\": \"mm\",\n \"phone\": \"9999999\"\n }\n }\n ]\n}\n'</span>
 
 <span class="kr">const</span> <span class="nx">SIGNATURE</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">HmacSHA256</span><span class="p">(</span><span class="nx">rawSignature</span><span class="p">,</span> <span class="nx">SECRET</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span>
 <span class="c1">// =&gt; '5133946c6a0ba25932cc18fa3aa1b5c3dfa2c7f99de0f8599b28c2da88ed9d42'</span>
@@ -441,13 +442,13 @@ Stops and Deliveries mismatch, <a href="#get-a-quotation-deliveryinfo">see Deliv
 </span></code></pre>
 <blockquote>
 <p><code>409</code>
-Not enough stops, number of stops should be between 2 and 15 <em>plz confirm</em></p>
+Not enough stops, number of stops should be between 2 and 10</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INSUFFICIENT_STOPS"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p><code>409</code>
-Reached maximum stops, Number of stops should be between 2 and 15 <em>plz confirm</em></p>
+Reached maximum stops, Number of stops should be between 2 and 10</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_TOO_MANY_STOPS"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -470,7 +471,7 @@ Invalid phone number, refer to <a href="#available-countries-phone-validations">
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_INVALID_PHONE_NUMBER"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p><code>409</code> &gt; <code>scheduleAt</code> datetime is in the past</p>
+<p><code>409</code> <code>scheduleAt</code> datetime is in the past</p>
 
 <aside class="warning">Be reminded that <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
 </blockquote>
@@ -531,6 +532,14 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
   <tbody>
 </table>
 
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/ISO_8601"><strong>ISO 8601</strong></a> format</li>
+</ul>
+
+<aside class="warning">
+The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> tided to <code>requesterContact</code>.
+</aside>
+
 <p><strong>Body</strong></p>
 
 <table><thead>
@@ -545,7 +554,7 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <td><code>scheduleAt</code></td>
 <td></td>
 <td><code>string</code></td>
-<td>Pick up time in <strong>UTC</strong> timezone and <strong>ISO RFC3339</strong> format</td>
+<td>Pick up time in <strong>UTC</strong> timezone and <a href="https://en.wikipedia.org/wiki/ISO_8601"><strong>ISO 8601</strong></a> format</td>
 </tr>
 <tr>
 <td><code>serviceType</code></td>
@@ -588,7 +597,7 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13.740167"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.535237"</span><span class="w"> </span><span class="p">},</span><span class="w">
   </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"th_TH"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"displayString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Siam Pathum Wan, Bangkok"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"displayString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"444 ถนน พญาไท แขวง วังใหม่ เขต ปทุมวัน กรุงเทพมหานคร 10330 ประเทศไทย"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TH"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -610,17 +619,17 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <tr>
 <td><code>location.lat</code></td>
 <td><code>string</code></td>
-<td></td>
+<td>Latitude</td>
 </tr>
 <tr>
 <td><code>location.lng</code></td>
 <td><code>string</code></td>
-<td></td>
+<td>Longitude</td>
 </tr>
 <tr>
 <td><code>addresses[&lt;LOCALE&gt;].displayString</code></td>
 <td><code>string</code></td>
-<td>becareful here blah blah blah</td>
+<td>Street address in plain text. Use <code>remarks</code> in <a href="#get-a-quotation-deliveryinfo">DeliveryInfo</a> for building, floor and flat (<strong>Need to check usage</strong>)</td>
 </tr>
 <tr>
 <td><code>addresses[&lt;LOCALE&gt;].country</code></td>
@@ -635,7 +644,7 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"toStop"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"toContact"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Contact&gt;</span><span class="w">
-  </span><span class="s2">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXX"</span><span class="w">
+  </span><span class="s2">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"บทที่ 34 ชั้น 4 อาคารเอบีซี"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Contact person, mobile phone number and remarks for each <a href="#get-a-quotation-waypoint">Waypoint</a> excluding the pick up point.</p>
@@ -652,7 +661,7 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <td><code>toStop</code></td>
 <td></td>
 <td><code>number</code></td>
-<td>The index of waypoint in <code>stops</code> this Delivery Info associates with, has to be <code>&gt;= 1</code>, since the first stop&#39;s Delivery Info is tided to <code>requesterContact</code></td>
+<td>The index of waypoint in <code>stops</code> this information associates with, has to be <code>&gt;= 1</code>, since the first stop&#39;s Delivery Info is tided to <code>requesterContact</code></td>
 </tr>
 <tr>
 <td><code>toContact</code></td>
@@ -664,7 +673,7 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <td><code>remarks</code></td>
 <td>🤷‍♀️</td>
 <td><code>string</code></td>
-<td>Free form text the driver would see</td>
+<td>Additional info about the delivery. eg. building, floor and flat</td>
 </tr>
 </tbody></table>
 
@@ -673,10 +682,8 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 <blockquote>
 <p><strong>Contact</strong></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mm"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9999999"</span><span class="w"> </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Donald Trump"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+668912121212"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>hahblah blah, talk about phone format etc.</p>
-
 <table><thead>
 <tr>
 <th></th>
@@ -748,13 +755,11 @@ The amount or currency you provided in <code>quotedTotalFee</code> doesn&#39;t m
 <p><code>429</code>
 Too Many Requests</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I_DONT_KNOW"</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="c1">// no body</span>
+</code></pre>
 <p><code>POST</code> <code>/v2/orders</code></p>
 
-<p>Use the fee received from <code>/quotations</code> Blah blah blah.</p>
-
-<p><code>YOUR_UNIQUE_REF</code> is used for associating your data with Lalamove&#39;s order. eg. your order id.</p>
+<p>Provide the <code>totalFee</code> and <code>totalFeeCurrency</code> received from <code>/quotations</code> as <code>quotedTotalFee.amount</code> and <code>quotedTotalFee.currency</code> merged with the exact same body used for <code>/quotations</code>.</p>
 
 <aside class="notice">The <code>amount</code> and <code>currency</code> of <code>quotedTotalFee</code> <b>MUST</b> match with quotation.</aside>
 
@@ -772,19 +777,19 @@ Too Many Requests</p>
 <td><code>quotedTotalFee.amount</code></td>
 <td></td>
 <td><code>string</code></td>
-<td>blah blah blah</td>
+<td><code>totalFee</code> from <code>/quotations</code></td>
 </tr>
 <tr>
 <td><code>quotedTotalFee.currency</code></td>
 <td></td>
 <td><code>string</code></td>
-<td>adada</td>
+<td><code>totalFeeCurrency</code> from <code>/quotations</code></td>
 </tr>
 <tr>
 <td><code>callerSideCustomerOrderId</code></td>
 <td>🤷‍♀️</td>
 <td><code>string</code></td>
-<td>adad, example usecase</td>
+<td>Used for associating your data with Lalamove&#39;s order. eg. your order id.</td>
 </tr>
 <tr>
 <td><code>sms</code></td>
@@ -824,9 +829,19 @@ Too Many Requests</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p><code>200</code> <code>EXPIRED</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPIRED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>GET</code> <code>/v2/orders/{id}</code></p>
-
-<p>Blah blah blah.</p>
 
 <p><strong>URL Params</strong></p>
 
@@ -879,6 +894,8 @@ Too Many Requests</p>
 <td>Order expired because a match could not be found</td>
 </tr>
 </tbody></table>
+
+<p><img src="images/status-flow.svg" alt="status" /></p>
 <h2 id='get-order-details-driver-details'>Driver details</h2><pre class="highlight plaintext tab-plaintext--prod"><code>GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
 </code></pre><pre class="highlight plaintext tab-plaintext--sandbox"><code>GET https://sandbox-rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
 </code></pre>
