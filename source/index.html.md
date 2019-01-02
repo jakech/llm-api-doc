@@ -14,6 +14,7 @@ includes:
   - place-order
   - get-order
   - cancel-order
+  - order-flow
   - services
   - errors
   - regions

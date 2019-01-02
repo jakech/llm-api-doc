@@ -4,7 +4,7 @@ Lalamove API is currently open for the following countries and regions.
 
 <aside class="success"><a href="#sales">Contact us</a> if you would like to expand your operations to more countries and regions.</aside>
 
-| Countries and Regions | ISO 3166-1 alpha-2 | locale key       |
+| Countries and Regions | ISO 3166-1 alpha-2 | Locale keys      |
 | --------------------- | ------------------ | ---------------- |
 | 🇭🇰 Hong Kong          | `HK`               | `en_HK`, `zh_HK` |
 | 🇲🇾 Malaysia           | `MY`               | `en_MY`, `ms_MY` |

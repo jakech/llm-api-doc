@@ -23,6 +23,32 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 }
 ```
 
+> `200` `ON_GOING`
+
+```json
+{
+  "driverId": "33522",
+  "status": "ON_GOING",
+  "price": {
+    "amount": "158000",
+    "currency": "IDR"
+  }
+}
+```
+
+> `200` `CANCELED`
+
+```json
+{
+  "driverId": "",
+  "status": "CANCELED",
+  "price": {
+    "amount": "158000",
+    "currency": "IDR"
+  }
+}
+```
+
 > `200` `COMPLETED`
 
 ```json
@@ -57,19 +83,17 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 | ---- | --------------------- |
 | `id` | `<LALAMOVE_ORDER_ID>` |
 
-**Order Status (need to confirm)**
+### Order Status
 
 |                    |                                                     |
 | ------------------ | --------------------------------------------------- |
 | `ASSIGNING_DRIVER` | Trying to match shipment with a driver              |
 | `ON_GOING`         | Shipment is matched with a driver                   |
 | `CANCELLED`        | Shipment is cancelled before pick up                |
-| `REJECTED`         | Shipment was matched and later reverted             |
 | `PICKED_UP`        | Shipment is picked up by the driver                 |
+| `REJECTED`         | Shipment was matched and later reverted             |
 | `COMPLETED`        | Sucessfully delivered and transaction has concluded |
 | `EXPIRED`          | Order expired because a match could not be found    |
-
-![status](images/status-flow.svg)
 
 ## Driver details
 
@@ -92,7 +116,7 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
 
 `GET` `/v2/orders/{orderId}/drivers/{driverId}`
 
-Blah blah blah.
+Retrieve driver's name and phone number.
 
 **URL Params**
 
@@ -122,7 +146,7 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}/loc
 
 `GET` `/v2/orders/{orderId}/drivers/{driverId}/location`
 
-Blah blah blah.
+Retrieve driver's lastest location in latitude and longitude.
 
 **URL Params**
 

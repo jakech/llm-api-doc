@@ -114,6 +114,25 @@ Request a quotation.
 
 Will return a with an object containing the fee amount and currency of based on information provided.
 
+<aside class="warning">
+The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> tided to <code>requesterContact</code>.
+</aside>
+
+**Body**
+
+|                    |     |                  |                                                                                                    |
+| ------------------ | --- | ---------------- | -------------------------------------------------------------------------------------------------- |
+| `scheduleAt`       |     | `string`         | Pick up time in **UTC** timezone and [**ISO 8601**](https://en.wikipedia.org/wiki/ISO_8601) format |
+| `serviceType`      |     | `string`         | The type of vechicle. [See available service types](#service-types) in your country/region         |
+| `stops`            |     | `Waypoint[]`     | Array of [`Waypoint`](#waypoint)s (minimum 2, maximum 10)                                          |
+| `deliveries`       |     | `DeliveryInfo[]` | Array of [`DeliveryInfo`](#deliveryinfo)s                                                          |
+| `requesterContact` |     | `Contact`        | Person of contact at _pick up point_ aka `stop[0]`, see [`Contact`](#get-a-quotation-contact)      |  |
+| `specialRequests`  | 🤷‍♀️  | `string[]`       | [See available special requests](#service-types) in your country/region                            |
+
+🤷‍♀️ - _Optional_
+
+### Timezone
+
 <aside class="warning"><b>IMPORTANT:</b> <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
@@ -141,23 +160,6 @@ Will return a with an object containing the fee amount and currency of based on 
 
 * [**ISO 8601**](https://en.wikipedia.org/wiki/ISO_8601) format
 
-<aside class="warning">
-The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> tided to <code>requesterContact</code>.
-</aside>
-
-**Body**
-
-|                    |     |                  |                                                                                                    |
-| ------------------ | --- | ---------------- | -------------------------------------------------------------------------------------------------- |
-| `scheduleAt`       |     | `string`         | Pick up time in **UTC** timezone and [**ISO 8601**](https://en.wikipedia.org/wiki/ISO_8601) format |
-| `serviceType`      |     | `string`         | The type of vechicle. [See available service types](#service-types) in your country/region         |
-| `stops`            |     | `Waypoint[]`     | Array of [`Waypoint`](#waypoint)s (minimum 2, maximum 10)                                          |
-| `deliveries`       |     | `DeliveryInfo[]` | Array of [`DeliveryInfo`](#deliveryinfo)s                                                          |
-| `requesterContact` |     | `Contact`        | Person of contact at _pick up point_ aka `stop[0]`, see [`Contact`](#get-a-quotation-contact)      |  |
-| `specialRequests`  | 🤷‍♀️  | `string[]`       | [See available special requests](#service-types) in your country/region                            |
-
-🤷‍♀️ - _Optional_
-
 ## Waypoint
 
 > **Waypoint**
@@ -167,7 +169,8 @@ The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> t
   "location": { "lat": "13.740167", "lng": "100.535237" },
   "addresses": {
     "th_TH": {
-      "displayString": "444 ถนน พญาไท แขวง วังใหม่ เขต ปทุมวัน กรุงเทพมหานคร 10330 ประเทศไทย",
+      "displayString":
+        "444 ถนน พญาไท แขวง วังใหม่ เขต ปทุมวัน กรุงเทพมหานคร 10330 ประเทศไทย",
       "country": "TH"
     }
   }
@@ -180,12 +183,12 @@ The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> t
 
 [See what locale keys are available in your country/region](#available-countries)
 
-|                                     |          |                                                                                                                           |
-| ----------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `location.lat`                      | `string` | Latitude                                                                                                                  |
-| `location.lng`                      | `string` | Longitude                                                                                                                 |
+|                                     |          |                                                                                                                                                     |
+| ----------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `location.lat`                      | `string` | Latitude                                                                                                                                            |
+| `location.lng`                      | `string` | Longitude                                                                                                                                           |
 | `addresses[<LOCALE>].displayString` | `string` | Street address in plain text. Use `remarks` in [DeliveryInfo](#get-a-quotation-deliveryinfo) for building, floor and flat (**Need to check usage**) |
-| `addresses[<LOCALE>].country`       | `string` | [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). [See Available countries](#available-countries)   |
+| `addresses[<LOCALE>].country`       | `string` | [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). [See Available countries](#available-countries)                             |
 
 ## DeliveryInfo
 
@@ -201,11 +204,11 @@ The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> t
 
 Contact person, mobile phone number and remarks for each [Waypoint](#get-a-quotation-waypoint) excluding the pick up point.
 
-|             |     |           |                                                                                                                                                            |
-| ----------- | --- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|             |     |           |                                                                                                                                                          |
+| ----------- | --- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `toStop`    |     | `number`  | The index of waypoint in `stops` this information associates with, has to be `>= 1`, since the first stop's Delivery Info is tided to `requesterContact` |
-| `toContact` |     | `Contact` | See [`Contact`](#get-a-quotation-contact)                                                                                                                  |
-| `remarks`   | 🤷‍♀️  | `string`  | Additional info about the delivery. eg. building, floor and flat                                                                                           |
+| `toContact` |     | `Contact` | See [`Contact`](#get-a-quotation-contact)                                                                                                                |
+| `remarks`   | 🤷‍♀️  | `string`  | Additional info about the delivery. eg. building, floor and flat                                                                                         |
 
 🤷‍♀️ - _Optional_
 
