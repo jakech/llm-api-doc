@@ -1,6 +1,6 @@
 # Order flow
 
-![status](images/status-flow.svg)
+![order-flow](images/order-flow.svg)
 
 ### Driver rejection
 

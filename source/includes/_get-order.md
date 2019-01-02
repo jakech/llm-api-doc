@@ -49,6 +49,19 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 }
 ```
 
+> `200` `PICKED_UP`
+
+```json
+{
+  "driverId": "33522",
+  "status": "PICKED_UP",
+  "price": {
+    "amount": "156000",
+    "currency": "IDR"
+  }
+}
+```
+
 > `200` `COMPLETED`
 
 ```json
@@ -84,6 +97,8 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 | `id` | `<LALAMOVE_ORDER_ID>` |
 
 ### Order Status
+
+![status](images/status-flow.svg)
 
 |                    |                                                     |
 | ------------------ | --------------------------------------------------- |
