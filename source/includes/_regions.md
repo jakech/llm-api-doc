@@ -7,6 +7,7 @@ Lalamove API is currently open for the following countries and regions.
 | Countries and Regions | ISO 3166-1 alpha-2 | Locale keys      |
 | --------------------- | ------------------ | ---------------- |
 | 🇭🇰 Hong Kong          | `HK`               | `en_HK`, `zh_HK` |
+| 🇮🇩 Indonesia          | `ID`               | `en_ID`, `id_ID` |
 | 🇲🇾 Malaysia           | `MY`               | `en_MY`, `ms_MY` |
 | 🇵🇭 Philippines        | `PH`               | `en_PH`          |
 | 🇸🇬 Singapore          | `SG`               | `en_SG`          |
@@ -31,6 +32,11 @@ The following table show how phone numbers are validated for each country or reg
       <td>🇭🇰 Hong Kong</td>
       <td>51234567</td>
       <td><code>/^((?!999)([2-9][0-9]{7}))$/</code></td>
+    </tr>
+    <tr>
+      <td>🇮🇩 Indonesia</td>
+      <td>0912345678</td>
+      <td><code>/^0(8\\d{8,11}|21\\d{7,8})$/</code></td>
     </tr>
     <tr>
       <td>🇲🇾 Malaysia</td>

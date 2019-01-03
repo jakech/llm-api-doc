@@ -21,3 +21,61 @@ We have a range of vechicles to cater specific needs for each and every region.
 | `LALABAG`    | Food Delivery Box                | ✅           |       |            |
 | `ROUNDTRIP`  |                                  | ✅           |       |            |
 | `ROUNDTRIP2` |                                  |              | ✅    | ✅         |
+
+## 🇸🇬 Singapore
+
+| Key          | Description | dimensions limit (cm) |
+| ------------ | ----------- | --------------------- |
+| `CAR`        |             |                       |
+| `MINIVAN`    |             |                       |
+| `MOTORCYCLE` |             |                       |
+| `TRUCK330`   |             |                       |
+| `TRUCK550`   |             |                       |
+| `VAN`        |             |                       |
+
+## 🇵🇭 Philippines
+
+| Key          | Description | dimensions limit (cm) |
+| ------------ | ----------- | --------------------- |
+| `MOTORCYCLE` |             |                       |
+| `MPV`        |             |                       |
+| `TRUCK330`   |             |                       |
+
+## 🇭🇰 Hong Kong
+
+| Key          | Description | dimensions limit (cm) |
+| ------------ | ----------- | --------------------- |
+| `MOTORCYCLE` |             |                       |
+| `TRUCK550`   |             |                       |
+| `VAN`        |             |                       |
+
+## 🇹🇼 Taiwan
+
+| Key          | Description | dimensions limit (cm) |
+| ------------ | ----------- | --------------------- |
+| `MOTORCYCLE` |             |                       |
+| `MPV`        |             |                       |
+| `TRUCK175`   |             |                       |
+| `TRUCK330`   |             |                       |
+| `VAN`        |             |                       |
+
+## 🇻🇳 Viet Nam
+
+| Key          | Description | dimensions limit (cm) |
+| ------------ | ----------- | --------------------- |
+| `MOTORCYCLE` |             |                       |
+| `TRUCK175`   |             |                       |
+| `TRUCK330`   |             |                       |
+
+## 🇮🇩 Indonesia
+
+| Key          | Description | dimensions limit (cm) |
+| ------------ | ----------- | --------------------- |
+| `MOTORCYCLE` |             |                       |
+
+## 🇲🇾 Malaysia
+
+| Key          | Description | dimensions limit (cm) |
+| ------------ | ----------- | --------------------- |
+| `CAR`        |             |                       |
+| `MOTORCYCLE` |             |                       |
