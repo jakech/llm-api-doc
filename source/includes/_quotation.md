@@ -217,7 +217,7 @@ Contact person, mobile phone number and remarks for each [Waypoint](#get-a-quota
 > **Contact**
 
 ```json
-{ "name": "Donald Trump", "phone": "+668912121212" }
+{ "name": "Donald Trump", "phone": "8912121212" }
 ```
 
 |         |          |                                                                                                                     |

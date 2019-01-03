@@ -16,14 +16,51 @@ Lalamove API is currently open for the following countries and regions.
 
 ## Phone validations
 
-blah blah blah
+The following table show how phone numbers are validated for each country or region.
 
-| Countries and Regions | Regex                                                                               | Sample |
-| --------------------- | ----------------------------------------------------------------------------------- | ------ |
-| 🇭🇰 Hong Kong          | `/^((?!999)([23456789]{1}[0-9]{7}))$/`                                              |        |
-| 🇲🇾 Malaysia           | <code>/^0(1[1,5]?\\d{8}&#124;[4-7,9]\\d{7}&#124;8[2-9]\\d{6}&#124;3\\d{8})$/</code> |        |
-| 🇵🇭 Philippines        | <code>/^09[0-9]{9}$&#124;^0?2[0-9]{7}$&#124;^0?32[0-9]{7}$/</code>                  |        |
-| 🇸🇬 Singapore          | `/^[689]{1}[0-9]{7}$/`                                                              |        |
-| 🇹🇭 Thailand           | `/^0[0-9]{8,9}$/`                                                                   |        |
-| 🇹🇼 Taiwan             | <code>/^0([1-8]{1}[0-9]{7,8}&#124;9[0-9]{8})$/</code>                               |        |
-| 🇻🇳 Viet Nam           | <code>/^0?(1[2689]&#124;2&#124;[35789])[0-9]{8}$&#124;^028[0-9]{8}$/</code>         |        |
+<table>
+  <thead>
+    <tr>
+      <th>Countries and Regions</th>
+      <th>Sample</th>
+      <th>Regex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🇭🇰 Hong Kong</td>
+      <td>51234567</td>
+      <td><code>/^((?!999)([2-9][0-9]{7}))$/</code></td>
+    </tr>
+    <tr>
+      <td>🇲🇾 Malaysia</td>
+      <td>0376886555</td>
+      <td><code>/^0(1[1,5]?\\d{8}|[4-7,9]\\d{7}|8[2-9]\\d{6}|3\\d{8})$/</code></td>
+    </tr>
+    <tr>
+      <td>🇵🇭 Philippines</td>
+      <td>09051234567</td>
+      <td><code>/^09[0-9]{9}$|^0?2[0-9]{7}$|^0?32[0-9]{7}$/</code></td>
+    </tr>
+    <tr>
+      <td>🇸🇬 Singapore</td>
+      <td>81234567</td>
+      <td><code>/^[689]{1}[0-9]{7}$/</code></td>
+    </tr>
+    <tr>
+      <td>🇹🇭 Thailand</td>
+      <td>0812345678</td>
+      <td><code>/^(0[0-9]{8,9}|[0-9]{4})$/</code></td>
+    </tr>
+    <tr>
+      <td>🇹🇼 Taiwan</td>
+      <td>0912345678</td>
+      <td><code>/^0([1-8]{1}[0-9]{7,8}|9[0-9]{8})$/</code></td>
+    </tr>
+    <tr>
+      <td>🇻🇳 Viet Nam</td>
+      <td>912345678</td>
+      <td><code>/^0?(2|[35789])[0-9]{8}$|^02[48][0-9]{8}$/</code></td>
+    </tr>
+  </tbody>
+</table>
