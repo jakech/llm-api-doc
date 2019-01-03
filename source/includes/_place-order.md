@@ -12,10 +12,7 @@ POST https://sandbox-rest.lalamove.com/v2/orders
 
 ```js
 {
-  "quotedTotalFee": {
-    "amount": "67",
-    "currency": "THB"
-  },
+  "quotedTotalFee": { "amount": "108000", "currency": "THB" },
   "callerSideCustomerOrderId": "YOUR_UNIQUE_REF",
   "sms": false,
   // ... merge with body used for quotation

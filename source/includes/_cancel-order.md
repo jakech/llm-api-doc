@@ -17,7 +17,7 @@ PUT https://sandbox-rest.lalamove.com/v2/orders/{id}/cancel
 ```
 
 > `409`
-> Cancellation does not meet certain constraints **WHAT constraints? @Pat**
+> Cancellation Forbidden
 
 ```json
 { "message": "ERR_CANCELLATION_FORBIDDEN" }

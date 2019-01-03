@@ -14,12 +14,9 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 
 ```json
 {
-  "driverId": "",
   "status": "ASSIGNING_DRIVER",
-  "price": {
-    "amount": "108000",
-    "currency": "THB"
-  }
+  "price": { "amount": "108000", "currency": "THB" },
+  "driverId": ""
 }
 ```
 
@@ -27,12 +24,9 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 
 ```json
 {
-  "driverId": "33522",
   "status": "ON_GOING",
-  "price": {
-    "amount": "108000",
-    "currency": "THB"
-  }
+  "price": { "amount": "108000", "currency": "THB" },
+  "driverId": "33522"
 }
 ```
 
@@ -40,12 +34,9 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 
 ```json
 {
-  "driverId": "",
   "status": "CANCELED",
-  "price": {
-    "amount": "108000",
-    "currency": "THB"
-  }
+  "price": { "amount": "108000", "currency": "THB" },
+  "driverId": ""
 }
 ```
 
@@ -53,12 +44,9 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 
 ```json
 {
-  "driverId": "33522",
   "status": "PICKED_UP",
-  "price": {
-    "amount": "108000",
-    "currency": "THB"
-  }
+  "price": { "amount": "108000", "currency": "THB" },
+  "driverId": "33522"
 }
 ```
 
@@ -66,12 +54,9 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 
 ```json
 {
-  "driverId": "",
   "status": "REJECTED",
-  "price": {
-    "amount": "108000",
-    "currency": "THB"
-  }
+  "price": { "amount": "108000", "currency": "THB" },
+  "driverId": ""
 }
 ```
 
@@ -79,12 +64,9 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 
 ```json
 {
-  "driverId": "8799752",
   "status": "COMPLETED"
-  "price": {
-    "amount": "108000",
-    "currency": "THB"
-  }
+  "price": { "amount": "108000", "currency": "THB" },
+  "driverId": "33522"
 }
 ```
 
@@ -92,12 +74,9 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 
 ```json
 {
-  "driverId": "",
   "status": "EXPIRED",
-  "price": {
-    "amount": "108000",
-    "currency": "THB"
-  }
+  "price": { "amount": "108000", "currency": "THB" },
+  "driverId": ""
 }
 ```
 
@@ -138,7 +117,7 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
 ```js
 {
   "name": "David",
-  "phone": "+668912121212"
+  "phone": "0978787878"
 }
 ```
 

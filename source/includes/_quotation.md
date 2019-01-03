@@ -27,7 +27,7 @@ POST https://sandbox-rest.lalamove.com/v2/quotations
 > Quotation Created
 
 ```json
-{ "totalFee": "67", "totalFeeCurrency": "THB" }
+{ "totalFee": "108000", "totalFeeCurrency": "THB" }
 ```
 
 > `409`
