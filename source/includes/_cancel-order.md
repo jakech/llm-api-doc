@@ -25,9 +25,7 @@ PUT https://sandbox-rest.lalamove.com/v2/orders/{id}/cancel
 
 `PUT` `/v2/orders/{id}/cancel`
 
-Cancellation, blah blah blah. When am I not allow to cancel????? @Pat
-
-Cancellation to an order is only allowed within **5 minitues** after matched.
+After an order is matched, cancellation is only allowed within **5 minitues**.
 
 API will response with `ERR_CANCELLATION_FORBIDDEN` when attempting to cancel an order past said time window.
 

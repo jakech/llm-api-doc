@@ -30,8 +30,8 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
   "driverId": "33522",
   "status": "ON_GOING",
   "price": {
-    "amount": "158000",
-    "currency": "IDR"
+    "amount": "108000",
+    "currency": "THB"
   }
 }
 ```
@@ -43,8 +43,8 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
   "driverId": "",
   "status": "CANCELED",
   "price": {
-    "amount": "158000",
-    "currency": "IDR"
+    "amount": "108000",
+    "currency": "THB"
   }
 }
 ```
@@ -56,8 +56,21 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
   "driverId": "33522",
   "status": "PICKED_UP",
   "price": {
-    "amount": "156000",
-    "currency": "IDR"
+    "amount": "108000",
+    "currency": "THB"
+  }
+}
+```
+
+> `200` `REJECTED`
+
+```json
+{
+  "driverId": "",
+  "status": "REJECTED",
+  "price": {
+    "amount": "108000",
+    "currency": "THB"
   }
 }
 ```
@@ -100,15 +113,15 @@ GET https://sandbox-rest.lalamove.com/v2/orders/{id}
 
 ![status](images/status-flow.svg)
 
-|                    |                                                     |
-| ------------------ | --------------------------------------------------- |
-| `ASSIGNING_DRIVER` | Trying to match shipment with a driver              |
-| `ON_GOING`         | Shipment is matched with a driver                   |
-| `CANCELLED`        | Shipment is cancelled before pick up                |
-| `PICKED_UP`        | Shipment is picked up by the driver                 |
-| `REJECTED`         | Shipment was matched and later reverted             |
-| `COMPLETED`        | Sucessfully delivered and transaction has concluded |
-| `EXPIRED`          | Order expired because a match could not be found    |
+|                    |                                                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------------------------- |
+| `ASSIGNING_DRIVER` | Trying to match shipment with a driver                                                                  |
+| `ON_GOING`         | Shipment is matched with a driver                                                                       |
+| `CANCELLED`        | Shipment is cancelled before pick up                                                                    |
+| `PICKED_UP`        | Shipment is picked up by the driver                                                                     |
+| `REJECTED`         | Shipment was matched and rejected twice, [see Order Flow](#order-flow-driver-location-driver-rejection) |
+| `COMPLETED`        | Sucessfully delivered and transaction has concluded                                                     |
+| `EXPIRED`          | Order expired because a match could not be found                                                        |
 
 ## Driver details
 
