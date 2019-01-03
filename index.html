@@ -223,6 +223,9 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#versioning" class="toc-h1 toc-link" data-title="Versioning">Versioning</a>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
@@ -236,6 +239,9 @@
           <li>
             <a href="#get-a-quotation" class="toc-h1 toc-link" data-title="Get a quotation">Get a quotation</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-quotation-headers-timezone" class="toc-h2 toc-link" data-title="Timezone">Timezone</a>
+                  </li>
                   <li>
                     <a href="#get-a-quotation-waypoint" class="toc-h2 toc-link" data-title="Waypoint">Waypoint</a>
                   </li>
@@ -254,6 +260,9 @@
             <a href="#get-order-details" class="toc-h1 toc-link" data-title="Get order details">Get order details</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#get-order-details-contact-order-status" class="toc-h2 toc-link" data-title="Order Status">Order Status</a>
+                  </li>
+                  <li>
                     <a href="#get-order-details-driver-details" class="toc-h2 toc-link" data-title="Driver details">Driver details</a>
                   </li>
                   <li>
@@ -265,10 +274,18 @@
             <a href="#cancel-an-order" class="toc-h1 toc-link" data-title="Cancel an order">Cancel an order</a>
           </li>
           <li>
+            <a href="#order-flow" class="toc-h1 toc-link" data-title="Order flow">Order flow</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#order-flow-driver-location-driver-rejection" class="toc-h2 toc-link" data-title="Driver rejection">Driver rejection</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#service-types" class="toc-h1 toc-link" data-title="Service types">Service types</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#service-types-thailand" class="toc-h2 toc-link" data-title="Thailand">Thailand</a>
+                    <a href="#service-types-thailand" class="toc-h2 toc-link" data-title="🇹🇭 Thailand">🇹🇭 Thailand</a>
                   </li>
               </ul>
           </li>
@@ -295,10 +312,16 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre class="highlight plaintext tab-plaintext--prod"><code>https://rest.lalamove.com
+</code></pre><pre class="highlight plaintext tab-plaintext--sandbox"><code>https://sandbox-rest.lalamove.com
+</code></pre>
 <p>The lalamove API lets you integrate your application and business with express delivery, including following end points for our client to use.</p>
 
 <p><strong>APIPurpose</strong>1QuotationAllow the user to get quotation of an order, delivery with multiple stops and schedule order of a specific time2Place orderAllow the user to place an order with a defined value from our quotation API3Get order detailsAllow the user to retrieve the order information4Get order&#39;s driver informationAllow the user to retrieve the driver information of an order5Get order&#39;s driver locationAllow the user to retrieve the driver latest location6Cancel orderAllow the user to cancel the order before the driver is matched and less than 3 mins after driver is matched. (cannot cancel after driver has arrived first stop)</p>
-<h1 id='authentication'>Authentication</h1>
+<h1 id='versioning'>Versioning</h1><h1 id='authentication'>Authentication</h1>
 <p>Lalamove API makes use of <a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code">HMAC</a> (SHA256) as the authentication mechanism.</p>
 
 <p>You will be provided an api <code>KEY</code>, and a <code>SECRET</code> for generating a <a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code">HMAC</a> hash (also known as a <code>SIGNATURE</code>).</p>
@@ -432,7 +455,7 @@ Currently, API keys are limited to a <b>single country/region</b>.
 <p><code>201</code>
 Quotation Created</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"totalFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67"</span><span class="p">,</span><span class="w"> </span><span class="s2">"totalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w"> </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"totalFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"totalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p><code>409</code>
@@ -507,35 +530,6 @@ Fail to reverse from address to location, provide <code>lat</code> and <code>lng
 
 <p>Will return a with an object containing the fee amount and currency of based on information provided.</p>
 
-<aside class="warning"><b>IMPORTANT:</b> <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
-
-<script>
-  (function() {
-    window.now = moment()
-  })()
-</script>
-
-<table>
-  <thead>
-    <tr>
-      <th>Your local time</th>
-      <th>UTC time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><script>document.write(now.toISOString(true))</script></td>
-      <td><script>document.write(now.toISOString())</script></td>
-    </tr>
-  <tbody>
-</table>
-
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/ISO_8601"><strong>ISO 8601</strong></a> format</li>
-</ul>
-
 <aside class="warning">
 The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> tided to <code>requesterContact</code>.
 </aside>
@@ -589,6 +583,35 @@ The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> t
 </tbody></table>
 
 <p>🤷‍♀️ - <em>Optional</em></p>
+<h3 id='get-a-quotation-headers-timezone'>Timezone</h3>
+<aside class="warning"><b>IMPORTANT:</b> <code>scheduleAt</code> is in <b>UTC</b> timezone.</aside>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+
+<script>
+  (function() {
+    window.now = moment()
+  })()
+</script>
+
+<table>
+  <thead>
+    <tr>
+      <th>Your local time</th>
+      <th>UTC time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><script>document.write(now.toISOString(true))</script></td>
+      <td><script>document.write(now.toISOString())</script></td>
+    </tr>
+  <tbody>
+</table>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/ISO_8601"><strong>ISO 8601</strong></a> format</li>
+</ul>
 <h2 id='get-a-quotation-waypoint'>Waypoint</h2>
 <blockquote>
 <p><strong>Waypoint</strong></p>
@@ -597,7 +620,8 @@ The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> t
   </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13.740167"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.535237"</span><span class="w"> </span><span class="p">},</span><span class="w">
   </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"th_TH"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"displayString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"444 ถนน พญาไท แขวง วังใหม่ เขต ปทุมวัน กรุงเทพมหานคร 10330 ประเทศไทย"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"displayString"</span><span class="p">:</span><span class="w">
+        </span><span class="s2">"444 ถนน พญาไท แขวง วังใหม่ เขต ปทุมวัน กรุงเทพมหานคร 10330 ประเทศไทย"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TH"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -682,7 +706,7 @@ The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> t
 <blockquote>
 <p><strong>Contact</strong></p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Donald Trump"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+668912121212"</span><span class="w"> </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Donald Trump"</span><span class="p">,</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8912121212"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
 <tr>
@@ -709,10 +733,7 @@ The pick up location's (first stop) <code>DeliveryInfo</code> is <b>ALWAYS</b> t
 <p>Body</p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="p">{</span>
-  <span class="s2">"quotedTotalFee"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"67"</span><span class="p">,</span>
-    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"THB"</span>
-  <span class="p">},</span>
+  <span class="s2">"quotedTotalFee"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"108000"</span><span class="p">,</span> <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"THB"</span> <span class="p">},</span>
   <span class="s2">"callerSideCustomerOrderId"</span><span class="p">:</span> <span class="s2">"YOUR_UNIQUE_REF"</span><span class="p">,</span>
   <span class="s2">"sms"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="c1">// ... merge with body used for quotation</span>
@@ -809,36 +830,63 @@ Too Many Requests</p>
 <p><code>200</code> <code>ASSIGNING_DRIVER</code></p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASSIGNING_DRIVER"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>200</code> <code>ON_GOING</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_GOING"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"33522"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>200</code> <code>CANCELED</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANCELED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>200</code> <code>PICKED_UP</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PICKED_UP"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"33522"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p><code>200</code> <code>REJECTED</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p><code>200</code> <code>COMPLETED</code></p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8799752"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="w">
-  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"33522"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p><code>200</code> <code>EXPIRED</code></p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPIRED"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"108000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THB"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"driverId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><code>GET</code> <code>/v2/orders/{id}</code></p>
@@ -856,8 +904,8 @@ Too Many Requests</p>
 <td><code>&lt;LALAMOVE_ORDER_ID&gt;</code></td>
 </tr>
 </tbody></table>
-
-<p><strong>Order Status (need to confirm)</strong></p>
+<h3 id='get-order-details-contact-order-status'>Order Status</h3>
+<p><img src="images/status-flow.svg" alt="status" /></p>
 
 <table><thead>
 <tr>
@@ -878,12 +926,12 @@ Too Many Requests</p>
 <td>Shipment is cancelled before pick up</td>
 </tr>
 <tr>
-<td><code>REJECTED</code></td>
-<td>Shipment was matched and later reverted</td>
-</tr>
-<tr>
 <td><code>PICKED_UP</code></td>
 <td>Shipment is picked up by the driver</td>
+</tr>
+<tr>
+<td><code>REJECTED</code></td>
+<td>Shipment was matched and rejected twice, <a href="#order-flow-driver-location-driver-rejection">see Order Flow</a></td>
 </tr>
 <tr>
 <td><code>COMPLETED</code></td>
@@ -894,8 +942,6 @@ Too Many Requests</p>
 <td>Order expired because a match could not be found</td>
 </tr>
 </tbody></table>
-
-<p><img src="images/status-flow.svg" alt="status" /></p>
 <h2 id='get-order-details-driver-details'>Driver details</h2><pre class="highlight plaintext tab-plaintext--prod"><code>GET https://rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
 </code></pre><pre class="highlight plaintext tab-plaintext--sandbox"><code>GET https://sandbox-rest.lalamove.com/v2/orders/{orderId}/drivers/{driverId}
 </code></pre>
@@ -904,12 +950,12 @@ Too Many Requests</p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="p">{</span>
   <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"David"</span><span class="p">,</span>
-  <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"+668912121212"</span>
+  <span class="s2">"phone"</span><span class="p">:</span> <span class="s2">"0978787878"</span>
 <span class="p">}</span>
 </code></pre>
 <p><code>GET</code> <code>/v2/orders/{orderId}/drivers/{driverId}</code></p>
 
-<p>Blah blah blah.</p>
+<p>Retrieve driver&#39;s name and phone number.</p>
 
 <p><strong>URL Params</strong></p>
 
@@ -941,7 +987,7 @@ Too Many Requests</p>
 </code></pre>
 <p><code>GET</code> <code>/v2/orders/{orderId}/drivers/{driverId}/location</code></p>
 
-<p>Blah blah blah.</p>
+<p>Retrieve driver&#39;s lastest location in latitude and longitude.</p>
 
 <p><strong>URL Params</strong></p>
 
@@ -972,13 +1018,15 @@ Too Many Requests</p>
 </span></code></pre>
 <blockquote>
 <p><code>409</code>
-Cancellation does not meet certain constraints <strong>WHAT constraints? @Pat</strong></p>
+Cancellation Forbidden</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERR_CANCELLATION_FORBIDDEN"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><code>PUT</code> <code>/v2/orders/{id}/cancel</code></p>
 
-<p>Cancellation, blah blah blah. When am I not allow to cancel????? @Pat</p>
+<p>After an order is matched, cancellation is only allowed within <strong>5 minitues</strong>.</p>
+
+<p>API will response with <code>ERR_CANCELLATION_FORBIDDEN</code> when attempting to cancel an order past said time window.</p>
 
 <p><strong>URL Params</strong></p>
 
@@ -993,13 +1041,17 @@ Cancellation does not meet certain constraints <strong>WHAT constraints? @Pat</s
 <td><code>&lt;LALAMOVE_ORDER_ID&gt;</code></td>
 </tr>
 </tbody></table>
+<h1 id='order-flow'>Order flow</h1>
+<p><img src="images/order-flow.svg" alt="order-flow" /></p>
+<h3 id='order-flow-driver-location-driver-rejection'>Driver rejection</h3>
+<p>Order can be rejected after matched. When that happens, order status will be reverted from <code>ON_GOING</code> to <code>ASSIGNING_DRIVER</code> and we will try to match it again with a different driver. When an order is rejected a second time, the order status will change to <code>REJECTED</code> and we will no longer try to find a match for that order.</p>
 <h1 id='service-types'>Service types</h1>
 <p>We have a range of vechicles to cater specific needs for each and every region.</p>
 
 <ul>
 <li>talk about how profession and locale savvy our locale Drivers are and why you should use us.</li>
 </ul>
-<h2 id='service-types-thailand'>Thailand</h2>
+<h2 id='service-types-thailand'>🇹🇭 Thailand</h2>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -1120,7 +1172,7 @@ Cancellation does not meet certain constraints <strong>WHAT constraints? @Pat</s
 <tr>
 <th>Countries and Regions</th>
 <th>ISO 3166-1 alpha-2</th>
-<th>locale key</th>
+<th>Locale keys</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1160,7 +1212,54 @@ Cancellation does not meet certain constraints <strong>WHAT constraints? @Pat</s
 </tr>
 </tbody></table>
 <h2 id='available-countries-phone-validations'>Phone validations</h2>
-<p>blah blah blah</p>
+<p>The following table show how phone numbers are validated for each country or region.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Countries and Regions</th>
+      <th>Sample</th>
+      <th>Regex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🇭🇰 Hong Kong</td>
+      <td>51234567</td>
+      <td><code>/^((?!999)([2-9][0-9]{7}))$/</code></td>
+    </tr>
+    <tr>
+      <td>🇲🇾 Malaysia</td>
+      <td>0376886555</td>
+      <td><code>/^0(1[1,5]?\\d{8}|[4-7,9]\\d{7}|8[2-9]\\d{6}|3\\d{8})$/</code></td>
+    </tr>
+    <tr>
+      <td>🇵🇭 Philippines</td>
+      <td>09051234567</td>
+      <td><code>/^09[0-9]{9}$|^0?2[0-9]{7}$|^0?32[0-9]{7}$/</code></td>
+    </tr>
+    <tr>
+      <td>🇸🇬 Singapore</td>
+      <td>81234567</td>
+      <td><code>/^[689]{1}[0-9]{7}$/</code></td>
+    </tr>
+    <tr>
+      <td>🇹🇭 Thailand</td>
+      <td>0812345678</td>
+      <td><code>/^(0[0-9]{8,9}|[0-9]{4})$/</code></td>
+    </tr>
+    <tr>
+      <td>🇹🇼 Taiwan</td>
+      <td>0912345678</td>
+      <td><code>/^0([1-8]{1}[0-9]{7,8}|9[0-9]{8})$/</code></td>
+    </tr>
+    <tr>
+      <td>🇻🇳 Viet Nam</td>
+      <td>912345678</td>
+      <td><code>/^0?(2|[35789])[0-9]{8}$|^02[48][0-9]{8}$/</code></td>
+    </tr>
+  </tbody>
+</table>
 <h1 id='api-access'>API access</h1>
 <p>
 <!--[if lte IE 8]>
