@@ -26,12 +26,18 @@ We have a range of vechicles to cater specific needs for each and every region.
 
 | Key          | Description | dimensions limit (cm) |
 | ------------ | ----------- | --------------------- |
-| `CAR`        |             |                       |
-| `MINIVAN`    |             |                       |
-| `MOTORCYCLE` |             |                       |
+| `CAR`        |             | 70 x 50 x 50          |
+| `MINIVAN`    |             | 160 x 120 x 100       |
+| `MOTORCYCLE` |             | 40 x 25 x 25          |
 | `TRUCK330`   |             |                       |
 | `TRUCK550`   |             |                       |
-| `VAN`        |             |                       |
+| `VAN`        |             | 230 x 120 x 120       |
+
+### Special requests
+
+|       | Description      | `CAR` | `MINIVAN` | `MOTORCYCLE` | `TRUCK330` | `TRUCK550` | `VAN` |
+| ----- | ---------------- | ----- | --------- | ------------ | ---------- | ---------- | ----- |
+| `COD` | Cash on delivery | ✅    | ✅        | ✅           | ✅         | ✅         | ✅    |
 
 ## 🇵🇭 Philippines
 
