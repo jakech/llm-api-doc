@@ -2,7 +2,7 @@
 
 We have a range of vechicles to cater specific needs for each and every region.
 
-* talk about how profession and locale savvy our locale Drivers are and why you should use us.
+[//]: # 'talk about how profession and locale savvy our locale Drivers are and why you should use us.'
 
 ## 🇹🇭 Thailand
 
