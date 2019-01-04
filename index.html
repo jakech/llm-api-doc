@@ -223,9 +223,6 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#versioning" class="toc-h1 toc-link" data-title="Versioning">Versioning</a>
-          </li>
-          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
@@ -339,10 +336,20 @@
 <pre class="highlight plaintext tab-plaintext--prod"><code>https://rest.lalamove.com
 </code></pre><pre class="highlight plaintext tab-plaintext--sandbox"><code>https://sandbox-rest.lalamove.com
 </code></pre>
-<p>The lalamove API lets you integrate your application and business with express delivery, including following end points for our client to use.</p>
+<p>The lalamove API </p>
 
-<p><strong>APIPurpose</strong>1QuotationAllow the user to get quotation of an order, delivery with multiple stops and schedule order of a specific time2Place orderAllow the user to place an order with a defined value from our quotation API3Get order detailsAllow the user to retrieve the order information4Get order&#39;s driver informationAllow the user to retrieve the driver information of an order5Get order&#39;s driver locationAllow the user to retrieve the driver latest location6Cancel orderAllow the user to cancel the order before the driver is matched and less than 3 mins after driver is matched. (cannot cancel after driver has arrived first stop)</p>
-<h1 id='versioning'>Versioning</h1><h1 id='authentication'>Authentication</h1>
+<p>HTTP features</p>
+
+<p>JSON response</p>
+
+<p>API libraries</p>
+
+<p>Sandbox and Production API keys</p>
+
+<p>System Status</p>
+
+<p>https://status.lalamove.com/</p>
+<h1 id='authentication'>Authentication</h1>
 <p>Lalamove API makes use of <a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code">HMAC</a> (SHA256) as the authentication mechanism.</p>
 
 <p>You will be provided an api <code>KEY</code>, and a <code>SECRET</code> for generating a <a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code">HMAC</a> hash (also known as a <code>SIGNATURE</code>).</p>
@@ -1068,10 +1075,6 @@ Cancellation Forbidden</p>
 <p>Order can be rejected after matched. When that happens, order status will be reverted from <code>ON_GOING</code> to <code>ASSIGNING_DRIVER</code> and we will try to match it again with a different driver. When an order is rejected a second time, the order status will change to <code>REJECTED</code> and we will no longer try to find a match for that order.</p>
 <h1 id='service-types'>Service types</h1>
 <p>We have a range of vechicles to cater specific needs for each and every region.</p>
-
-<ul>
-<li>talk about how profession and locale savvy our locale Drivers are and why you should use us.</li>
-</ul>
 <h2 id='service-types-thailand'>🇹🇭 Thailand</h2>
 <table><thead>
 <tr>
