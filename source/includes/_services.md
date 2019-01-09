@@ -6,11 +6,11 @@ We have a range of vechicles to cater specific needs for each and every region.
 
 ## 🇹🇭 Thailand
 
-| Key          | Description   | Shipment restrictions       |
-| ------------ | ------------- | --------------------------- |
-| `MOTORCYCLE` | Motorcycle    | 50 × 50 × 50 cm・20 kg      |
-| `MPV`        | Hatchback     | 115 × 115 × 80 cm・100 kg   |
-| `TRUCK330`   | Pick-Up Truck | 170 × 150 × 170 cm・1000 kg |
+| Key          | Description   | Shipment restrictions      |
+| ------------ | ------------- | -------------------------- |
+| `MOTORCYCLE` | Motorcycle    | 50 × 50 × 50 cm, 20kg      |
+| `MPV`        | Hatchback     | 115 × 115 × 80 cm, 100kg   |
+| `TRUCK330`   | Pick-Up Truck | 170 × 150 × 170 cm, 1000kg |
 
 ### Special requests
 
@@ -24,20 +24,29 @@ We have a range of vechicles to cater specific needs for each and every region.
 
 ## 🇸🇬 Singapore
 
-| Key          | Description | dimensions limit (cm) |
+| Key          | Description | Shipment restrictions |
 | ------------ | ----------- | --------------------- |
-| `CAR`        |             | 70 x 50 x 50          |
-| `MINIVAN`    |             | 160 x 120 x 100       |
-| `MOTORCYCLE` |             | 40 x 25 x 25          |
-| `TRUCK330`   |             |                       |
-| `TRUCK550`   |             |                       |
-| `VAN`        |             | 230 x 120 x 120       |
+| `MOTORCYCLE` | Bike        | 40 × 25 × 25 cm, 8kg  |
+| `CAR`        | Car         | 70 × 50 × 50 cm, 20kg |
+| `MINIVAN`    | 1.7m Van    | 160 × 120 × 100 cm    |
+| `VAN`        | 2.4m Van    | 230 × 120 × 120 cm    |
+| `TRUCK330`   | 10ft Lorry  | 290 × 140 × 170 cm    |
+| `TRUCK550`   | 14ft Lorry  | 420 × 170 × 190 cm    |
 
 ### Special requests
 
-|       | Description      | `CAR` | `MINIVAN` | `MOTORCYCLE` | `TRUCK330` | `TRUCK550` | `VAN` |
-| ----- | ---------------- | ----- | --------- | ------------ | ---------- | ---------- | ----- |
-| `COD` | Cash on delivery | ✅    | ✅        | ✅           | ✅         | ✅         | ✅    |
+|                       | Description                                                                        | `MOTORCYCLE` | `CAR` | `MINIVAN` | `VAN` | `TRUCK330` | `TRUCK550` |
+| --------------------- | ---------------------------------------------------------------------------------- | ------------ | ----- | --------- | ----- | ---------- | ---------- |
+| `COD`                 | Cash on delivery                                                                   | ✅           | ✅    | ✅        | ✅    | ✅         | ✅         |
+| `PURCHASE_SERVICE`    | [Purchase Service](https://www.lalamove.com/singapore/en/eateries_purchaseservice) | ✅           |       |           |       |            |            |
+| `RESTRICTED`          | [Secured Zone](http://restsg.vanapi.com/updatable/restricted_zone)                 | ✅           | ✅    | ✅        | ✅    | ✅         | ✅         |
+| `RETURNTRIP_DOCUMENT` | [Return Trip](http://restsg.vanapi.com/updatable/return_trip)                      | ✅           |       |           |       |            |            |
+| `RETURNTRIP`          | [Return Trip](http://restsg.vanapi.com/updatable/return_trip)                      |              | ✅    | ✅        | ✅    |            |            |
+| `RETURNTRIP_LORRY`    | [Return Trip](http://restsg.vanapi.com/updatable/return_trip)                      |              |       |           |       | ✅         | ✅         |
+| `MOVING_VAN`          | [Moving Services](http://restsg.vanapi.com/updatable/moving_service)               |              |       | ✅        | ✅    |            |
+| `MOVING`              | [Moving Services](http://restsg.vanapi.com/updatable/moving_service)               |              |       |           |       | ✅         | ✅         |
+| `TAILGATE`            | Tailgate                                                                           |              |       |           |       | ✅         | ✅         |
+| `COVERED`             | Covered Lorry                                                                      |              |       |           |       | ✅         | ✅         |
 
 ## 🇵🇭 Philippines
 
