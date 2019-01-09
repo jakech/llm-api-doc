@@ -1080,23 +1080,23 @@ Cancellation Forbidden</p>
 <tr>
 <th>Key</th>
 <th>Description</th>
-<th>dimensions limit (cm)</th>
+<th>Shipment restrictions</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>MOTORCYCLE</code></td>
 <td>Motorcycle</td>
-<td>50 × 50 × 50</td>
+<td>50 × 50 × 50 cm, 20kg</td>
 </tr>
 <tr>
 <td><code>MPV</code></td>
 <td>Hatchback</td>
-<td>115 × 115 × 80</td>
+<td>115 × 115 × 80 cm, 100kg</td>
 </tr>
 <tr>
 <td><code>TRUCK330</code></td>
-<td>Pick Up Truck</td>
-<td>170 × 150 × 170</td>
+<td>Pick-Up Truck</td>
+<td>170 × 150 × 170 cm, 1000kg</td>
 </tr>
 </tbody></table>
 <h3 id='service-types-thailand-special-requests'>Special requests</h3>
@@ -1111,14 +1111,14 @@ Cancellation Forbidden</p>
 </thead><tbody>
 <tr>
 <td><code>COD</code></td>
-<td>Cash on delivery</td>
+<td><a href="https://www.lalamove.com/thailand/bangkok/en/cod">Cash on delivery</a></td>
 <td>✅</td>
 <td>✅</td>
 <td>✅</td>
 </tr>
 <tr>
 <td><code>HELP_BUY</code></td>
-<td>Purchase Service (THB 1 - 1,000)</td>
+<td>Purchase Service (THB 1 - 1,000). <ol><li>Input your details, amount and price of the desired goods in <a href="#get-a-quotation-deliveryinfo"><code>DeliveryInfo.remarks</code></a></li><li>Make sure the recepient carry suffcient amount of cash to pay our driver</li></ol></td>
 <td>✅</td>
 <td></td>
 <td></td>
@@ -1132,14 +1132,14 @@ Cancellation Forbidden</p>
 </tr>
 <tr>
 <td><code>ROUNDTRIP</code></td>
+<td>Round Trip</td>
 <td></td>
 <td>✅</td>
-<td></td>
-<td></td>
+<td>✅</td>
 </tr>
 <tr>
-<td><code>ROUNDTRIP2</code></td>
-<td></td>
+<td><code>DOOR2DOOR</code></td>
+<td>Door to door (by driver)</td>
 <td></td>
 <td>✅</td>
 <td>✅</td>
@@ -1150,38 +1150,152 @@ Cancellation Forbidden</p>
 <tr>
 <th>Key</th>
 <th>Description</th>
-<th>dimensions limit (cm)</th>
+<th>Shipment restrictions</th>
 </tr>
 </thead><tbody>
 <tr>
+<td><code>MOTORCYCLE</code></td>
+<td>Bike</td>
+<td>40 × 25 × 25 cm, 8kg</td>
+</tr>
+<tr>
 <td><code>CAR</code></td>
-<td></td>
-<td></td>
+<td>Car</td>
+<td>70 × 50 × 50 cm, 20kg</td>
 </tr>
 <tr>
 <td><code>MINIVAN</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>MOTORCYCLE</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>TRUCK330</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>TRUCK550</code></td>
-<td></td>
-<td></td>
+<td>1.7m Van</td>
+<td>160 × 120 × 100 cm</td>
 </tr>
 <tr>
 <td><code>VAN</code></td>
+<td>2.4m Van</td>
+<td>230 × 120 × 120 cm</td>
+</tr>
+<tr>
+<td><code>TRUCK330</code></td>
+<td>10ft Lorry</td>
+<td>290 × 140 × 170 cm</td>
+</tr>
+<tr>
+<td><code>TRUCK550</code></td>
+<td>14ft Lorry</td>
+<td>420 × 170 × 190 cm</td>
+</tr>
+</tbody></table>
+<h3 id='service-types-singapore-special-requests'>Special requests</h3>
+<table><thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th><code>MOTORCYCLE</code></th>
+<th><code>CAR</code></th>
+<th><code>MINIVAN</code></th>
+<th><code>VAN</code></th>
+<th><code>TRUCK330</code></th>
+<th><code>TRUCK550</code></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>COD</code></td>
+<td>Cash on delivery</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>PURCHASE_SERVICE</code></td>
+<td><a href="https://www.lalamove.com/singapore/en/eateries_purchaseservice">Purchase Service</a></td>
+<td>✅</td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>RESTRICTED</code></td>
+<td><a href="http://restsg.vanapi.com/updatable/restricted_zone">Secured Zone</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>RETURNTRIP_DOCUMENT</code></td>
+<td><a href="http://restsg.vanapi.com/updatable/return_trip">Return Trip</a></td>
+<td>✅</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>RETURNTRIP</code></td>
+<td><a href="http://restsg.vanapi.com/updatable/return_trip">Return Trip</a></td>
+<td></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>RETURNTRIP_LORRY</code></td>
+<td><a href="http://restsg.vanapi.com/updatable/return_trip">Return Trip</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>MOVING_VAN</code></td>
+<td><a href="http://restsg.vanapi.com/updatable/moving_service">Moving Services</a></td>
+<td></td>
+<td></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>MOVING</code></td>
+<td><a href="http://restsg.vanapi.com/updatable/moving_service">Moving Services</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>TAILGATE</code></td>
+<td>Tailgate</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>COVERED</code></td>
+<td>Covered Lorry</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 </tbody></table>
 <h2 id='service-types-philippines'>🇵🇭 Philippines</h2>
