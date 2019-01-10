@@ -76,11 +76,21 @@ We have a range of vechicles to cater specific needs for each and every region.
 
 ## 🇻🇳 Viet Nam
 
-| Key          | Description | dimensions limit (cm) |
-| ------------ | ----------- | --------------------- |
-| `MOTORCYCLE` |             |                       |
-| `TRUCK175`   |             |                       |
-| `TRUCK330`   |             |                       |
+| Key          | Description | Shipment restrictions      | HCMC | Hanoi |
+| ------------ | ----------- | -------------------------- | ---- | ----- |
+| `MOTORCYCLE` | Motorcycle  | 40 x 40 x 40 cm, 30kg      | ✅   | ✅    |
+| `TRUCK175`   | Truck       | 200 x 120 x 120 cm, 500kg  | ✅   |       |
+| `TRUCK330`   | Truck       | 300 x 160 x 160 cm, 1000kg | ✅   |       |
+
+### Special requests
+
+|                              | Description      | `MOTORCYCLE` | `TRUCK175` | `TRUCK330` |
+| ---------------------------- | ---------------- | ------------ | ---------- | ---------- |
+| `HELP_BUY`                   | Purchase Service | ✅           |            |            |
+| `LALABAG`                    | Insulated Box    | ✅           |            |            |
+| `DOOR2DOOR_DRIVER`           |                  | ✅           |            |            |
+| `DOOR2DOOR_1HELPER_TRUCK175` |                  |              | ✅         |            |
+| `DOOR2DOOR_1HELPER_TRUCK330` |                  |              |            | ✅         |
 
 ## 🇮🇩 Indonesia
 
