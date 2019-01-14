@@ -1,6 +1,6 @@
 # Service types
 
-We have a range of vechicles to cater specific needs for each and every region.
+We have a range of vechicles cater to specific needs of the following regions.
 
 [//]: # 'talk about how profession and locale savvy our locale Drivers are and why you should use us.'
 
@@ -57,6 +57,17 @@ We have a range of vechicles to cater specific needs for each and every region.
 | `MOTORCYCLE` | Motorcycle  | 1.6 x 1.25 x 1.6ft, 20kg | ✅     | ✅   |
 | `MPV`        | UV (Small)  | 4 x 3.2 x 2.8ft, 300kg   | ✅     | ✅   |
 | `TRUCK330`   | FB/L300     | 7 x 4 x 4ft, 1,000kg     | ✅     | ✅   |
+
+### Special requests
+
+|                        | Description                                                                                                | `MOTORCYCLE` | `MPV` | `TRUCK330` |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------- | ------------ | ----- | ---------- |
+| `COD`                  | Cash Handling                                                                                              | ✅           |       |            |
+| `LALABAG`              | Insulated Box                                                                                              | ✅           |       |            |
+| `QUEUEING_MOTORCYCLE`  | [Queueing Service](https://restph.vanapi.com/updatable/queueing)                                           | ✅           |       |            |
+| `PURCHASE_SERVICE`     | [Purchase Service](https://download.lalamove.com/special_request/purchase_service/purchase_service_ph.php) | ✅           |       |            |
+| `ROUNDTRIP_MOTORCYCLE` | Round Trip                                                                                                 | ✅           |       |            |
+| `DRIVER_CARRIES`       | [Driver Carries (max 50kg)](https://restph.vanapi.com/updatable/driver_carries)                            |              | ✅    | ✅         |
 
 ## 🇭🇰 Hong Kong
 
